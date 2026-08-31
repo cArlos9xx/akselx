@@ -689,7 +689,7 @@
   /* ============ CÉU: ÓRBITAS + ESTRELAS CADENTES (movimento constante) ============ */
   (function(){
     var c=document.getElementById('celest');if(!c)return;
-    var x=c.getContext('2d');var w,h;var stars=[],bodies=[],met=[];
+    var x=c.getContext('2d');var w,h;var stars=[],rings=[],bodies=[],met=[];
     function rs(){
       var d=Math.min(window.devicePixelRatio||1,1.5);
       c.width=innerWidth*d;c.height=innerHeight*d;
@@ -701,14 +701,19 @@
       var n=reduced?40:Math.min(150,Math.floor(w*h/9000));
       for(var i=0;i<n;i++){stars.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.1+0.3,ph:Math.random()*6.28,sp:0.4+Math.random()*1.2});}
       var R=Math.min(w,h);
+      rings=[];
       var clusters=[[w*0.82,h*0.24,3],[w*0.16,h*0.74,2]];
       clusters.forEach(function(cl){
         var cx=cl[0],cy=cl[1],cnt=cl[2],rx=R*0.13;
         for(var k=0;k<cnt;k++){
-          bodies.push({
-            cx:cx,cy:cy,rx:rx*(0.62+k*0.34),ry:rx*(0.62+k*0.34)*0.30,
-            tilt:(k%2?0.5:-0.42),ang:(k*2.1)%6.283,speed:0.00055+(k*0.0002)*(k%2?-1:1)
-          });
+          var ring={cx:cx,cy:cy,rx:rx*(0.62+k*0.34),ry:rx*(0.62+k*0.34)*0.30,tilt:(k%2?0.5:-0.42)};
+          rings.push(ring);
+          // vários pontos claros viajando em cada anel
+          var dots=reduced?1:5+Math.floor(Math.random()*3);
+          var dir=(k%2?-1:1);
+          for(var d=0;d<dots;d++){
+            bodies.push({ring:ring,ang:(d*6.283/dots)+Math.random()*0.5,speed:0.0005+(k*0.00015)*dir+(Math.random()-0.5)*0.0002});
+          }
         }
       });
       if(!reduced){for(var m=0;m<3;m++)spawnMeteor(true);}
@@ -735,25 +740,24 @@
       for(var i=0;i<stars.length;i++){var s=stars[i];
         x.fillStyle='rgba(210,225,255,'+(0.20+0.28*Math.sin(st*s.sp+s.ph))+')';
         x.beginPath();x.arc(s.x,s.y,s.r,0,6.28);x.fill();}
-      // anéis de órbita
-      for(var b=0;b<bodies.length;b++){var o=bodies[b];o.ang+=o.speed*2.6;
-        x.strokeStyle='rgba(120,160,255,0.15)';
-        x.beginPath();x.ellipse(o.cx,o.cy,o.rx,o.ry,o.tilt,0,6.28);x.stroke();
-        // posição do corpo na elipse com inclinação
-        var ex=(Math.cos(o.ang)*o.rx)*Math.cos(o.tilt)-(Math.sin(o.ang)*o.ry)*Math.sin(o.tilt)+o.cx;
-        var ey=(Math.cos(o.ang)*o.rx)*Math.sin(o.tilt)+(Math.sin(o.ang)*o.ry)*Math.cos(o.tilt)+o.cy;
-        // direção tangencial (rastro atrás do corpo)
+      // anéis de órbita (elipses fixas)
+      for(var r=0;r<rings.length;r++){var rg=rings[r];
+        x.strokeStyle='rgba(120,160,255,0.14)';
+        x.beginPath();x.ellipse(rg.cx,rg.cy,rg.rx,rg.ry,rg.tilt,0,6.28);x.stroke();}
+      // pontos claros viajando ao longo dos anéis
+      for(var b=0;b<bodies.length;b++){var o=bodies[b];var rg=o.ring;o.ang+=o.speed*3.4;
+        var ex=(Math.cos(o.ang)*rg.rx)*Math.cos(rg.tilt)-(Math.sin(o.ang)*rg.ry)*Math.sin(rg.tilt)+rg.cx;
+        var ey=(Math.cos(o.ang)*rg.rx)*Math.sin(rg.tilt)+(Math.sin(o.ang)*rg.ry)*Math.cos(rg.tilt)+rg.cy;
         var ta=o.ang-Math.PI/2;
-        var tdx=(Math.cos(ta)*o.rx)*Math.cos(o.tilt)-(Math.sin(ta)*o.ry)*Math.sin(o.tilt);
-        var tdy=(Math.cos(ta)*o.rx)*Math.sin(o.tilt)+(Math.sin(ta)*o.ry)*Math.cos(o.tilt);
+        var tdx=(Math.cos(ta)*rg.rx)*Math.cos(rg.tilt)-(Math.sin(ta)*rg.ry)*Math.sin(rg.tilt);
+        var tdy=(Math.cos(ta)*rg.rx)*Math.sin(rg.tilt)+(Math.sin(ta)*rg.ry)*Math.cos(rg.tilt);
         var tl=Math.hypot(tdx,tdy)||1;tdx/=tl;tdy/=tl;
-        var glow=x.createLinearGradient(ex,ey,ex-tdx*20,ey-tdy*20);
-        glow.addColorStop(0,'rgba(43,217,255,0.85)');glow.addColorStop(1,'rgba(43,217,255,0)');
-        x.strokeStyle=glow;x.lineWidth=2.2;x.lineCap='round';
-        x.beginPath();x.moveTo(ex,ey);x.lineTo(ex-tdx*24,ey-tdy*24);x.stroke();
+        var glow=x.createLinearGradient(ex,ey,ex-tdx*18,ey-tdy*18);
+        glow.addColorStop(0,'rgba(43,217,255,0.8)');glow.addColorStop(1,'rgba(43,217,255,0)');
+        x.strokeStyle=glow;x.lineWidth=2;x.lineCap='round';
+        x.beginPath();x.moveTo(ex,ey);x.lineTo(ex-tdx*20,ey-tdy*20);x.stroke();
         x.fillStyle='rgba(225,245,255,0.95)';
-        x.beginPath();x.arc(ex,ey,2.3,0,6.28);x.fill();
-      }
+        x.beginPath();x.arc(ex,ey,2.2,0,6.28);x.fill();}
       // estrelas cadentes (meteoros realistas)
       for(var m=0;m<met.length;m++){
         var me=met[m];me.t++;

@@ -340,6 +340,40 @@
     .void{background:radial-gradient(120% 90% at 50% 0%,transparent 20%,rgba(0,0,0,0.82) 100%)}
   }
 
+  /* ===== Adaptação mobile da apresentação ===== */
+  @media (max-width:820px){
+    section{padding:84px 5vw;min-height:auto}
+    nav{padding:16px 20px;gap:10px}
+    .nav-links{gap:14px;flex-wrap:wrap}
+    .nav-links a{font-size:0.66rem;letter-spacing:1px}
+    .nav-brand{font-size:0.95rem}
+    h1.feat{font-size:clamp(2rem,7.5vw,2.9rem);letter-spacing:-1px}
+    h2.sec{font-size:clamp(1.5rem,6vw,2.1rem)}
+    .lead{font-size:1.05rem}
+    .kick{letter-spacing:3px}
+    .slogcat .slog,.two .col{padding:22px 18px}
+    .rgcard{padding:24px 20px}
+    .rgcard::after{font-size:5rem}
+    .rg-nome{font-size:0.72rem;letter-spacing:1px}
+    .rg-num{font-size:1.05rem;letter-spacing:0.5px;flex-wrap:wrap}
+    .symbol{gap:34px}
+    .symbol .glyph{width:170px;height:170px}
+    .eco{min-height:52vh}
+    .eco .core .c1{font-size:1.9rem}
+    .row{flex-direction:column;align-items:flex-start}
+    .numrow{column-gap:18px}
+    .anatom .let{width:64px;min-height:96px}
+    .btn{padding:14px 30px;font-size:0.75rem}
+  }
+  @media (max-width:480px){
+    section{padding:72px 4.5vw}
+    .symbol .glyph{width:150px;height:150px}
+    .eco{min-height:48vh}
+    .eco .core .c1{font-size:1.7rem}
+    .typebar{font-size:0.72rem}
+    .logos,.concepts{gap:10px}
+  }
+
   @media (prefers-reduced-motion: reduce){
     *,*::before,*::after{animation-duration:0.001s !important;animation-iteration-count:1 !important;transition-duration:0.001s !important}
     .rv{opacity:1;transform:none;filter:none;transition:none}

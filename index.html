@@ -719,16 +719,14 @@
       if(!reduced){for(var m=0;m<3;m++)spawnMeteor(true);}
     }
     function spawnMeteor(instant){
-      var fromLeft=Math.random()<0.5;
-      var ang=(Math.random()*0.34-0.17)+(fromLeft?-0.28:0.28);
-      var sp=7+Math.random()*6;
+      if(!rings.length)return;
+      var rg=rings[Math.floor(Math.random()*rings.length)];
       var m={
-        x:fromLeft?-60:w+60,
-        y:-30+Math.random()*h*0.35,
-        vx:Math.cos(ang)*sp*(fromLeft?1:-1),
-        vy:Math.sin(ang)*sp*0.85,
-        len:70+Math.random()*110,
-        t:instant?(Math.random()*300):-60
+        ring:rg,
+        ang:Math.random()*6.283,
+        speed:(0.007+Math.random()*0.009)*(Math.random()<0.5?-1:1),
+        trail:90+Math.random()*140,
+        t:instant?0:-50
       };
       met.push(m);
     }
@@ -758,22 +756,35 @@
         x.beginPath();x.moveTo(ex,ey);x.lineTo(ex-tdx*20,ey-tdy*20);x.stroke();
         x.fillStyle='rgba(225,245,255,0.95)';
         x.beginPath();x.arc(ex,ey,2.2,0,6.28);x.fill();}
-      // estrelas cadentes (meteoros realistas)
+      // estrelas cadentes viajando AO LONGO da órbita (cometas realistas)
       for(var m=0;m<met.length;m++){
         var me=met[m];me.t++;
-        var v=Math.hypot(me.vx,me.vy)||1;var nx=me.vx/v,ny=me.vy/v;
-        var hx=me.x+nx*(me.t*2.4), hy=me.y+ny*(me.t*2.4);
-        var fade=1;
-        // rastro que se desvanece
-        var gx=x.createLinearGradient(hx,hy,hx-me.vx*2.2,hy-me.vy*2.2);
-        gx.addColorStop(0,'rgba(230,245,255,'+(0.9*fade)+')');
+        var rg=me.ring;var cx=rg.cx,cy=rg.cy,tilt=rg.tilt,rx=rg.rx,ry=rg.ry;
+        me.ang+=me.speed;
+        // cabeça na elipse inclinada
+        var hx=(Math.cos(me.ang)*rx)*Math.cos(tilt)-(Math.sin(me.ang)*ry)*Math.sin(tilt)+cx;
+        var hy=(Math.cos(me.ang)*rx)*Math.sin(tilt)+(Math.sin(me.ang)*ry)*Math.cos(tilt)+cy;
+        // tangente (sentido contrário ao movimento) para o rastro
+        var dir=me.speed>=0?1:-1;
+        var ta=me.ang-dir*Math.PI/2;
+        var tdx=(Math.cos(ta)*rx)*Math.cos(tilt)-(Math.sin(ta)*ry)*Math.sin(tilt);
+        var tdy=(Math.cos(ta)*rx)*Math.sin(tilt)+(Math.sin(ta)*ry)*Math.cos(tilt);
+        var tl=Math.hypot(tdx,tdy)||1;tdx/=tl;tdy/=tl;
+        // aparece e some gradualmente
+        var al=Math.min(me.t/60,1)*Math.min(Math.max((1440-me.t)/220,0),1);
+        var trail=Math.min(Math.max(me.t*2.2,0),me.trail);
+        var tx=hx-tdx*trail, ty=hy-tdy*trail;
+        var gx=x.createLinearGradient(hx,hy,tx,ty);
+        gx.addColorStop(0,'rgba(235,248,255,'+(0.95*al)+')');
+        gx.addColorStop(0.4,'rgba(190,220,255,'+(0.5*al)+')');
         gx.addColorStop(1,'rgba(140,180,255,0)');
-        x.strokeStyle=gx;x.lineWidth=2;x.lineCap='round';
-        x.beginPath();x.moveTo(hx,hy);x.lineTo(hx-me.vx*1.9,hy-me.vy*1.9);x.stroke();
-        var hg=x.createRadialGradient(hx,hy,0,hx,hy,3.4);
-        hg.addColorStop(0,'rgba(255,255,255,'+fade+')');hg.addColorStop(1,'rgba(255,255,255,0)');
-        x.fillStyle=hg;x.beginPath();x.arc(hx,hy,3.4,0,6.28);x.fill();
-        if(hx<-80||hx>w+80||hy<-80||hy>h+80||me.t>600){met.splice(m,1);m--;}
+        x.strokeStyle=gx;x.lineWidth=2.2;x.lineCap='round';
+        x.beginPath();x.moveTo(hx,hy);x.lineTo(tx,ty);x.stroke();
+        // cabeça brilhante
+        var hg=x.createRadialGradient(hx,hy,0,hx,hy,4);
+        hg.addColorStop(0,'rgba(255,255,255,'+al+')');hg.addColorStop(1,'rgba(255,255,255,0)');
+        x.fillStyle=hg;x.beginPath();x.arc(hx,hy,4,0,6.28);x.fill();
+        if(me.t>1440){met.splice(m,1);m--;}
       }
       if(!reduced&&met.length<3&&Math.random()<0.02){spawnMeteor(false);}
       if(!reduced)requestAnimationFrame(draw);

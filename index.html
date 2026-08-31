@@ -259,47 +259,84 @@
   .numrow .n .lbl{color:var(--muted);font-size:0.76rem;letter-spacing:2px;text-transform:uppercase;margin-top:6px}
 
   /* ===== MOVIMENTO CONTÍNUO TEMÁTICO ===== */
-  .pillar,.logocard,.concept,.dna .item{transition:border-color .3s,transform .4s}
-  .pillar:hover,.logocard:hover,.concept:hover,.dna .item:hover{transform:translateY(-4px)}
+  .pillar,.logocard,.concept,.dna .item{will-change:transform;transform-style:preserve-3d}
 
-  .stack .node{animation:energyPulse 4s ease-in-out infinite}
-  .stack .node:nth-child(2){animation-delay:.6s}.stack .node:nth-child(3){animation-delay:1.2s}
-  .stack .node:nth-child(4){animation-delay:1.8s}.stack .node:nth-child(5){animation-delay:2.4s}
-  .stack .node:nth-child(6){animation-delay:3s}
-  @keyframes energyPulse{0%,100%{box-shadow:0 0 0 0 rgba(47,107,255,0.0)}50%{box-shadow:0 0 26px rgba(47,107,255,0.22)}}
-  .stack .node.hl{animation:coreGlow 3.2s ease-in-out infinite}
-  @keyframes coreGlow{0%,100%{box-shadow:0 0 22px rgba(43,217,255,0.4)}50%{box-shadow:0 0 46px rgba(43,217,255,0.75)}}
+  /* elevação 3D constante e escalonada de todos os cartões */
+  .pillar,.logocard,.concept,.dna .item{animation:cardLift 5.5s ease-in-out infinite}
+  .pillar:nth-child(2),.logocard:nth-child(2),.concept:nth-child(2),.dna .item:nth-child(2){animation-delay:.6s}
+  .pillar:nth-child(3),.logocard:nth-child(3),.concept:nth-child(3),.dna .item:nth-child(3){animation-delay:1.2s}
+  .pillar:nth-child(4),.logocard:nth-child(4),.concept:nth-child(4),.dna .item:nth-child(4){animation-delay:1.8s}
+  .pillar:nth-child(5),.logocard:nth-child(5),.dna .item:nth-child(5){animation-delay:2.4s}
+  .pillar:nth-child(6),.logocard:nth-child(6),.dna .item:nth-child(6){animation-delay:3s}
+  .logocard:nth-child(7){animation-delay:3.6s}.logocard:nth-child(8){animation-delay:4.2s}
+  .logocard:nth-child(9){animation-delay:.3s}.logocard:nth-child(10){animation-delay:.9s}
+  .logocard:nth-child(11){animation-delay:1.5s}.logocard:nth-child(12){animation-delay:2.1s}
+  @keyframes cardLift{
+    0%,100%{transform:translateY(0) rotateX(0deg) scale(1)}
+    50%{transform:translateY(-9px) rotateX(6deg) scale(1.02)}
+  }
 
-  .dna .item{animation:chipFloat 5s ease-in-out infinite}
-  .dna .item:nth-child(2){animation-delay:.7s}.dna .item:nth-child(3){animation-delay:1.4s}
-  .dna .item:nth-child(4){animation-delay:2.1s}.dna .item:nth-child(5){animation-delay:2.8s}
-  .dna .item:nth-child(6){animation-delay:3.5s}
-  @keyframes chipFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-  .dna .item::after{content:'';display:block;width:34px;height:2px;margin:14px auto 0;background:var(--grad);opacity:.6;border-radius:2px;animation:lineBreath 3.4s ease-in-out infinite}
-  @keyframes lineBreath{0%,100%{opacity:.25;transform:scaleX(.5)}50%{opacity:.9;transform:scaleX(1)}}
+  /* stack: fluxo de dados — seta desce continuamente + nós pulsando/fluindo */
+  .stack .node:not(:last-child)::after{animation:flowArrow 2.4s ease-in-out infinite}
+  @keyframes flowArrow{
+    0%{opacity:0;transform:translate(-50%,-8px)}
+    35%{opacity:1}
+    100%{opacity:0;transform:translate(-50%,8px)}
+  }
+  .stack .node{animation:nodePulse 3.4s ease-in-out infinite}
+  .stack .node:nth-child(2){animation-delay:.55s}.stack .node:nth-child(3){animation-delay:1.1s}
+  .stack .node:nth-child(4){animation-delay:1.65s}.stack .node:nth-child(5){animation-delay:2.2s}
+  .stack .node:nth-child(6){animation-delay:2.75s}
+  @keyframes nodePulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(47,107,255,0);transform:translateX(0)}
+    50%{box-shadow:0 12px 34px rgba(47,107,255,0.5);transform:translateX(6px)}
+  }
+  .stack .node.hl{animation:coreGlow 2.6s ease-in-out infinite}
+  @keyframes coreGlow{
+    0%,100%{box-shadow:0 0 24px rgba(43,217,255,.5);transform:scale(1)}
+    50%{box-shadow:0 0 56px rgba(43,217,255,.95);transform:scale(1.05)}
+  }
 
-  .extend .row .tag{position:relative;display:inline-flex;align-items:center;gap:2px}
-  .extend .row .tag::after{content:'';position:absolute;right:-10px;width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);opacity:0;animation:tagDot 4s ease-in-out infinite}
-  @keyframes tagDot{0%,88%{opacity:0}92%{opacity:1}100%{opacity:0}}
+  /* DNA: chips flutuando + linha que respira */
+  .dna .item{animation:cardLift 5s ease-in-out infinite}
+  .dna .item:nth-child(2){animation-delay:.6s}.dna .item:nth-child(3){animation-delay:1.2s}
+  .dna .item:nth-child(4){animation-delay:1.8s}.dna .item:nth-child(5){animation-delay:2.4s}
+  .dna .item:nth-child(6){animation-delay:3s}
+  .dna .item::after{content:'';display:block;width:34px;height:2px;margin:14px auto 0;background:var(--grad);border-radius:2px;animation:linePulse 2.8s ease-in-out infinite}
+  @keyframes linePulse{0%,100%{width:20px;opacity:.35}50%{width:60px;opacity:1}}
 
+  /* extensões: linha de energia varre a tag inteira */
+  .extend .row .tag{position:relative}
+  .extend .row .tag::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--grad);border-radius:2px;transform:scaleX(0);transform-origin:left;animation:energyLine 3.2s ease-in-out infinite}
+  @keyframes energyLine{0%{transform:scaleX(0);opacity:0}35%{opacity:1}75%{transform:scaleX(1);opacity:.15}100%{transform:scaleX(1);opacity:0}}
+
+  /* slogans: brilho deslizando + card inclinando */
   .slogcat .slog{position:relative;overflow:hidden}
-  .slogcat .slog::before{content:'';position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(43,217,255,0.06),transparent);transform:skewX(-20deg);animation:shine 6s ease-in-out infinite}
-  @keyframes shine{0%{left:-80%}50%{left:130%}100%{left:130%}}
+  .slogcat .slog::before{content:'';position:absolute;top:0;left:-80%;width:55%;height:100%;background:linear-gradient(100deg,transparent,rgba(43,217,255,0.16),transparent);transform:skewX(-20deg);animation:shine 4.5s ease-in-out infinite}
+  @keyframes shine{0%{left:-80%}55%{left:135%}100%{left:135%}}
+  .slogcat .slog{animation:cardLift 6s ease-in-out infinite}
+  .slogcat:nth-of-type(2) .slog{animation-delay:.8s}
+  .slogcat:nth-of-type(3) .slog{animation-delay:1.6s}
 
-  .concept{animation:chipFloat 6s ease-in-out infinite}
-  .concept:nth-child(2){animation-delay:.8s}.concept:nth-child(3){animation-delay:1.6s}.concept:nth-child(4){animation-delay:2.4s}
+  /* títulos de seção: brilho varrendo os trechos em destaque */
+  h2.sec span{display:inline-block;position:relative;background-image:linear-gradient(100deg,#2BD9FF,#2F6BFF,#2BD9FF);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:gradShift 5s ease-in-out infinite}
+  @keyframes gradShift{0%,100%{background-position:0% 0}50%{background-position:100% 0}}
 
-  .gsteps span.on{animation:stepGlow 3.5s ease-in-out infinite}
-  @keyframes stepGlow{0%,100%{box-shadow:0 0 0 0 rgba(47,107,255,0)}50%{box-shadow:0 0 18px rgba(47,107,255,0.35)}}
+  /* passos globais + manifesto: brilho pulsante evidente */
+  .gsteps span.on{animation:stepGlow 2.8s ease-in-out infinite}
+  @keyframes stepGlow{0%,100%{box-shadow:0 0 0 0 rgba(47,107,255,0);transform:scale(1)}50%{box-shadow:0 0 26px rgba(47,107,255,.6);transform:scale(1.06)}}
+  .manifesto h2 strong,.manifesto .x{animation:textGlow 3s ease-in-out infinite}
+  @keyframes textGlow{0%,100%{text-shadow:0 0 14px rgba(43,217,255,.25)}50%{text-shadow:0 0 40px rgba(43,217,255,.65)}}
 
-  .manifesto h2 strong{animation:textGlow 3.5s ease-in-out infinite}
-  .manifesto .x{animation:textGlow 3.5s ease-in-out infinite}
-  @keyframes textGlow{0%,100%{text-shadow:0 0 12px rgba(43,217,255,0.15)}50%{text-shadow:0 0 30px rgba(43,217,255,0.5)}}
+  /* números: contagem pulsada */
+  .numrow .n .nb{animation:numBreath 2.6s ease-in-out infinite}
+  .numrow .n:nth-child(2) .nb{animation-delay:.4s}.numrow .n:nth-child(3) .nb{animation-delay:.8s}
+  .numrow .n:nth-child(4) .nb{animation-delay:1.2s}
+  @keyframes numBreath{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(.96)}}
 
-  .numrow .n .nb{animation:numBreath 4s ease-in-out infinite}
-  .numrow .n:nth-child(2) .nb{animation-delay:.5s}.numrow .n:nth-child(3) .nb{animation-delay:1s}
-  .numrow .n:nth-child(4) .nb{animation-delay:1.5s}
-  @keyframes numBreath{0%,100%{opacity:1}50%{opacity:.6}}
+  /* palavra do manifesto / leads: leve elevação contínua */
+  .manifesto h2{animation:h2Drift 7s ease-in-out infinite}
+  @keyframes h2Drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 
   @media (prefers-reduced-motion: reduce){
     *,*::before,*::after{animation-duration:0.001s !important;animation-iteration-count:1 !important;transition-duration:0.001s !important}

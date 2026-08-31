@@ -37,7 +37,7 @@
     background:radial-gradient(120% 90% at 50% 0%,transparent 30%,rgba(0,0,0,0.7) 100%)}
 
   /* ===== ANIMAÇÃO PREMIUM FUTURISTA (tom original, sutil) ===== */
-  .aurora{position:fixed;inset:-30%;z-index:3;pointer-events:none;mix-blend-mode:screen;opacity:.6;
+  .aurora{position:fixed;inset:-30%;z-index:3;pointer-events:none;mix-blend-mode:screen;opacity:.38;
     background:
       radial-gradient(40% 40% at 20% 30%,rgba(47,107,255,0.28),transparent 60%),
       radial-gradient(40% 40% at 78% 62%,rgba(43,217,255,0.16),transparent 60%),
@@ -50,7 +50,7 @@
 
   .sweep{position:fixed;left:0;right:0;height:260px;z-index:3;pointer-events:none;mix-blend-mode:screen;
     background:linear-gradient(180deg,transparent,rgba(43,217,255,0.10),rgba(47,107,255,0.14),transparent);
-    animation:sweepY 9s cubic-bezier(.45,0,.55,1) infinite;opacity:.6}
+    animation:sweepY 13s cubic-bezier(.45,0,.55,1) infinite;opacity:.4}
   @keyframes sweepY{0%{top:-20%}100%{top:110%}}
 
   /* céu: órbitas + estrelas cadentes em movimento constante */
@@ -331,6 +331,14 @@
   .slogcat .slog:hover{transform:translateY(-4px)}
   .gsteps span:hover{transform:scale(1.07);border-color:var(--cyan)}
   .nav a:hover{color:var(--cyan)}
+
+  /* Legibilidade mobile: fundo ainda mais sutil e discreto */
+  @media (max-width:820px){
+    #celest{opacity:.4}
+    .aurora{opacity:.2}
+    .sweep{opacity:.22;display:none}
+    .void{background:radial-gradient(120% 90% at 50% 0%,transparent 20%,rgba(0,0,0,0.82) 100%)}
+  }
 
   @media (prefers-reduced-motion: reduce){
     *,*::before,*::after{animation-duration:0.001s !important;animation-iteration-count:1 !important;transition-duration:0.001s !important}
@@ -737,21 +745,21 @@
     }
     function seed(){
       stars=[];bodies=[];
-      var n=reduced?40:Math.min(150,Math.floor(w*h/9000));
-      for(var i=0;i<n;i++){stars.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.1+0.3,ph:Math.random()*6.28,sp:0.4+Math.random()*1.2});}
+      var n=reduced?24:Math.min(80,Math.floor(w*h/16000));
+      for(var i=0;i<n;i++){stars.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*0.9+0.25,ph:Math.random()*6.28,sp:0.3+Math.random()*0.8});}
       var R=Math.min(w,h);
       rings=[];
-      var clusters=[[w*0.82,h*0.24,3],[w*0.16,h*0.74,2]];
+      var clusters=[[w*0.82,h*0.24,2],[w*0.16,h*0.74,1]];
       clusters.forEach(function(cl){
         var cx=cl[0],cy=cl[1],cnt=cl[2],rx=R*0.13;
         for(var k=0;k<cnt;k++){
           var ring={cx:cx,cy:cy,rx:rx*(0.62+k*0.34),ry:rx*(0.62+k*0.34)*0.30,tilt:(k%2?0.5:-0.42)};
           rings.push(ring);
-          // vários pontos claros viajando em cada anel
-          var dots=reduced?1:5+Math.floor(Math.random()*3);
+          // poucos pontos claros viajando em cada anel
+          var dots=reduced?0:3+Math.floor(Math.random()*2);
           var dir=(k%2?-1:1);
           for(var d=0;d<dots;d++){
-            bodies.push({ring:ring,ang:(d*6.283/dots)+Math.random()*0.5,speed:0.0005+(k*0.00015)*dir+(Math.random()-0.5)*0.0002});
+            bodies.push({ring:ring,ang:(d*6.283/dots)+Math.random()*0.5,speed:0.0005+(k*0.00012)*dir+(Math.random()-0.5)*0.00015});
           }
         }
       });
@@ -762,26 +770,26 @@
       var st=performance.now()/1000;
       // estrelas cintilantes
       for(var i=0;i<stars.length;i++){var s=stars[i];
-        x.fillStyle='rgba(210,225,255,'+(0.20+0.28*Math.sin(st*s.sp+s.ph))+')';
+        x.fillStyle='rgba(210,225,255,'+(0.12+0.18*Math.sin(st*s.sp+s.ph))+')';
         x.beginPath();x.arc(s.x,s.y,s.r,0,6.28);x.fill();}
       // anéis de órbita (elipses fixas)
       for(var r=0;r<rings.length;r++){var rg=rings[r];
-        x.strokeStyle='rgba(120,160,255,0.14)';
+        x.strokeStyle='rgba(120,160,255,0.08)';
         x.beginPath();x.ellipse(rg.cx,rg.cy,rg.rx,rg.ry,rg.tilt,0,6.28);x.stroke();}
       // pontos claros viajando ao longo dos anéis
-      for(var b=0;b<bodies.length;b++){var o=bodies[b];var rg=o.ring;o.ang+=o.speed*3.4;
+      for(var b=0;b<bodies.length;b++){var o=bodies[b];var rg=o.ring;o.ang+=o.speed*2.8;
         var ex=(Math.cos(o.ang)*rg.rx)*Math.cos(rg.tilt)-(Math.sin(o.ang)*rg.ry)*Math.sin(rg.tilt)+rg.cx;
         var ey=(Math.cos(o.ang)*rg.rx)*Math.sin(rg.tilt)+(Math.sin(o.ang)*rg.ry)*Math.cos(rg.tilt)+rg.cy;
         var ta=o.ang-Math.PI/2;
         var tdx=(Math.cos(ta)*rg.rx)*Math.cos(rg.tilt)-(Math.sin(ta)*rg.ry)*Math.sin(rg.tilt);
         var tdy=(Math.cos(ta)*rg.rx)*Math.sin(rg.tilt)+(Math.sin(ta)*rg.ry)*Math.cos(rg.tilt);
         var tl=Math.hypot(tdx,tdy)||1;tdx/=tl;tdy/=tl;
-        var glow=x.createLinearGradient(ex,ey,ex-tdx*18,ey-tdy*18);
-        glow.addColorStop(0,'rgba(43,217,255,0.8)');glow.addColorStop(1,'rgba(43,217,255,0)');
-        x.strokeStyle=glow;x.lineWidth=2;x.lineCap='round';
-        x.beginPath();x.moveTo(ex,ey);x.lineTo(ex-tdx*20,ey-tdy*20);x.stroke();
-        x.fillStyle='rgba(225,245,255,0.95)';
-        x.beginPath();x.arc(ex,ey,2.2,0,6.28);x.fill();}
+        var glow=x.createLinearGradient(ex,ey,ex-tdx*14,ey-tdy*14);
+        glow.addColorStop(0,'rgba(43,217,255,0.55)');glow.addColorStop(1,'rgba(43,217,255,0)');
+        x.strokeStyle=glow;x.lineWidth=1.6;x.lineCap='round';
+        x.beginPath();x.moveTo(ex,ey);x.lineTo(ex-tdx*15,ey-tdy*15);x.stroke();
+        x.fillStyle='rgba(225,245,255,0.7)';
+        x.beginPath();x.arc(ex,ey,1.8,0,6.28);x.fill();}
       if(!reduced)requestAnimationFrame(draw);
     }
     rs();

@@ -66,16 +66,6 @@
 
   .wrap{position:relative;z-index:5}
 
-  /* ============ CINEMATIC INTRO ============ */
-  #intro{position:fixed;inset:0;z-index:100;background:var(--black);display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
-  #intro canvas.intro{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-  .intro-title{position:relative;text-align:center;z-index:5}
-  .intro-brand{font-size:clamp(2.6rem,9vw,6rem);font-weight:800;letter-spacing:-2px;opacity:0;transform:scale(1.08);color:var(--white)}
-  .intro-brand .x{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-  .intro-slogan{margin-top:18px;font-size:clamp(0.9rem,2vw,1.15rem);color:var(--gray);letter-spacing:3px;text-transform:uppercase;opacity:0;font-weight:300}
-  .intro-skip{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:6;color:var(--muted);font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;cursor:pointer;border:1px solid var(--line);padding:10px 22px;border-radius:40px;background:rgba(10,12,16,0.6);transition:color .2s,border-color .2s;font-family:var(--sans)}
-  .intro-skip:hover{color:var(--white);border-color:var(--blue-2)}
-
   /* ============ NAV ============ */
   nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:22px 44px;background:rgba(0,0,0,0.6);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);transform:translateY(-100%);transition:transform .6s cubic-bezier(.22,1,.36,1)}
   nav.show{transform:translateY(0)}
@@ -263,16 +253,6 @@
 <div class="void"></div>
 <div class="aurora"></div>
 <div class="sweep"></div>
-
-<!-- CINEMATIC INTRO -->
-<div id="intro">
-  <canvas id="introC" class="intro"></canvas>
-  <div class="intro-title">
-    <div class="intro-brand" id="introBrand">AKSEL<span class="x">X</span></div>
-    <div class="intro-slogan" id="introSlogan">O EIXO VELOZ DO FUTURO</div>
-  </div>
-  <div class="intro-skip" id="introSkip">Pular introdução</div>
-</div>
 
 <!-- NAV -->
 <nav id="nav">
@@ -592,45 +572,9 @@
     rs();if(!reduced)draw();
   })();
 
-  /* ============ CINEMATIC INTRO (rede neural que forma o nome) ============ */
+  /* ============ INTRO DESATIVADA: carrega direto no conteúdo ============ */
   (function(){
-    var intro=document.getElementById('intro'),c=document.getElementById('introC');if(!c)return;
-    var x=c.getContext('2d');var w,h,pts=[],phase=0,done=false,started=false;
-    var brand=document.getElementById('introBrand'),slogan=document.getElementById('introSlogan'),skip=document.getElementById('introSkip');
-    function rs(){var d=Math.min(window.devicePixelRatio||1,2);w=c.width=innerWidth*d;h=c.height=innerHeight*d;c.style.width=innerWidth+'px';c.style.height=innerHeight+'px';x.setTransform(d,0,0,d,0,0);w=innerWidth;h=innerHeight;seed();}
-    function seed(){pts=[];var n=reduced?10:Math.min(90,Math.floor(w*h/16000));
-      for(var i=0;i<n;i++){var ang=Math.random()*6.28;var rad=Math.sqrt(Math.random())*(Math.max(w,h)*0.6);
-        pts.push({bx:w/2+Math.cos(ang)*rad,by:h/2+Math.sin(ang)*rad,cx:Math.random()*w,cy:Math.random()*h,pr:0});}
-    }
-    addEventListener('resize',rs);
-    function draw(){
-      x.clearRect(0,0,w,h);
-      phase+=0.008;
-      var prog=Math.min(1,phase/1.6); // primeira fase: convergir
-      for(var i=0;i<pts.length;i++){var q=pts[i];q.cx+=(q.bx-q.cx)*0.02;q.cy+=(q.by-q.cy)*0.02;q.pr=Math.min(1,q.pr+0.004);}
-      // linhas ao centro
-      for(var i=0;i<pts.length;i++){var d2=Math.hypot(pts[i].cx-w/2,pts[i].cy-h/2);
-        var s=Math.max(0,1-d2/400);
-        if(s>0){x.strokeStyle='rgba(47,107,255,'+s*0.5+')';x.lineWidth=1;x.beginPath();x.moveTo(pts[i].cx,pts[i].cy);x.lineTo(w/2,h/2);x.stroke();}}
-      // pontos
-      for(var i=0;i<pts.length;i++){x.fillStyle='rgba(170,205,255,'+pts[i].pr*0.9+')';x.beginPath();x.arc(pts[i].cx,pts[i].cy,1.4*s,n=0,6.28);x.fill();}
-      if(!done&&phase>1.1){
-        done=true;
-        brand.style.transition='opacity 2s ease, transform 2.4s cubic-bezier(.16,1,.3,1)';
-        brand.style.opacity='1';brand.style.transform='scale(1)';
-        setTimeout(function(){slogan.style.transition='opacity 1.6s ease';slogan.style.opacity='1';},900);
-      }
-      if(done){
-        // camera: continuar lento, depois fade
-        setTimeout(function(){ },0);
-      }
-      requestAnimationFrame(draw);
-    }
-    skip.addEventListener('click',finish);
-    function finish(){if(!started){intro.style.transition='opacity 1.2s ease';intro.style.opacity='0';setTimeout(function(){intro.style.display='none';document.getElementById('nav').classList.add('show');},1200);started=true;}}
-    // auto finish
-    setTimeout(function(){ if(!started) finish(); }, 11000);
-    rs();if(!reduced)draw();
+    var nav=document.getElementById('nav');if(nav)nav.classList.add('show');
   })();
 
   /* ============ OBSERVERS ============ */

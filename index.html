@@ -125,6 +125,20 @@
   .pillar::after{content:'';position:absolute;left:0;top:0;height:100%;width:2px;background:var(--grad);opacity:0;transition:opacity .3s}
   .pillar:hover::after{opacity:1}
 
+  /* cartão de razão social + CNPJ */
+  .rgcard{position:relative;max-width:620px;margin:34px auto 0;background:linear-gradient(160deg,#11151C,#0B0E13);border:1px solid var(--line);border-radius:18px;padding:34px 38px;text-align:left;overflow:hidden}
+  .rgcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad)}
+  .rgcard::after{content:'AKSEL';position:absolute;right:-20px;bottom:-30px;font-weight:800;font-size:7rem;letter-spacing:-3px;color:rgba(255,255,255,0.03);pointer-events:none}
+  .rgcard-top{position:relative;display:flex;flex-direction:column;gap:6px}
+  .rgchip{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:0.66rem;letter-spacing:3px;color:var(--cyan);text-transform:uppercase;margin-bottom:6px}
+  .rgchip::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+  .rg-nome{font-family:var(--mono);font-size:0.82rem;letter-spacing:2px;color:var(--white)}
+  .rg-fantasia{font-family:var(--mono);font-size:0.72rem;letter-spacing:1px;color:var(--muted);font-style:italic}
+  .rg-num{position:relative;display:flex;gap:1px;align-items:center;margin-top:22px;padding-top:20px;border-top:1px dashed var(--line);font-family:var(--mono);font-size:clamp(1.15rem,3.4vw,1.7rem);letter-spacing:1px;color:var(--blue-2)}
+  .rg-num span{animation:rgNumIn 1s cubic-bezier(.22,1,.36,1) both}
+  @keyframes rgNumIn{from{opacity:0;transform:translateY(8px)}} 
+
+
   /* anatomia do nome */
   .anatom{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
   .anatom .let{width:86px;min-height:120px;background:var(--panel);border:1px solid var(--line);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:14px;text-align:center;transition:border-color .3s,transform .3s}
@@ -667,7 +681,32 @@
   </div>
 </section>
 
-<!-- 14 FINAL -->
+<!-- 14 DADOS CORPORATIVOS -->
+<section id="dados">
+  <div class="container" style="text-align:center">
+    <div class="kick rv">14 — Dados Corporativos</div>
+    <h2 class="sec rv">Aksel Tecnologia e Inteligência <span style="color:var(--blue-2)">Artificial Ltda.</span></h2>
+
+    <div class="rgcard rv">
+      <div class="rgcard-top">
+        <span class="rgchip">CNPJ</span>
+        <div class="rg-nome">AKSEL TECNOLOGIA E INTELIGÊNCIA ARTIFICIAL LTDA</div>
+        <div class="rg-fantasia">Aksel · O eixo do futuro</div>
+      </div>
+      <div class="rg-num" aria-label="CNPJ 00.000.000/0001-90">
+        <span>00</span><span>.</span><span>000</span><span>.</span><span>000</span><span>/</span><span>0001</span><span>-</span><span>90</span>
+      </div>
+    </div>
+
+    <div class="grid3" style="margin-top:44px">
+      <div class="pillar rv"><div class="num">RAZÃO SOCIAL</div><h3>Aksel Tecnologia e Inteligência Artificial Ltda.</h3><p>Sociedade limitada com sede no Brasil — base de engenharia, IA, software e dados.</p></div>
+      <div class="pillar rv"><div class="num">NOME FANTASIA</div><h3>Aksel</h3><p>Marca de tecnologia global. Registrada para plataformas de IA e serviços de dados.</p></div>
+      <div class="pillar rv"><div class="num">INSCRIÇÃO</div><h3>000.000.00-0 · ISENTO</h3><p>Dados ilustrativos para fins de apresentação da marca, não operacionais.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 15 FINAL -->
 <section class="final" id="final">
   <div class="sym rv" id="finalSym">
     <svg viewBox="0 0 220 220" fill="none"><g id="finalG"></g></svg>
@@ -689,7 +728,7 @@
   /* ============ CÉU: ÓRBITAS + ESTRELAS CADENTES (movimento constante) ============ */
   (function(){
     var c=document.getElementById('celest');if(!c)return;
-    var x=c.getContext('2d');var w,h;var stars=[],rings=[],bodies=[],met=[];
+    var x=c.getContext('2d');var w,h;var stars=[],rings=[],bodies=[],met=[],shoot=[];
     function rs(){
       var d=Math.min(window.devicePixelRatio||1,1.5);
       c.width=innerWidth*d;c.height=innerHeight*d;
@@ -716,7 +755,22 @@
           }
         }
       });
-      if(!reduced){for(var m=0;m<3;m++)spawnMeteor(true);}
+      if(!reduced){for(var m=0;m<3;m++)spawnMeteor(true);for(var s2=0;s2<2;s2++)spawnShoot(true);}
+    }
+    // estrelas cadentes que cruzam a tela de um lado para o outro
+    function spawnShoot(instant){
+      var fromLeft=Math.random()<0.5;
+      var ang=(Math.random()*0.34-0.17)+(fromLeft?-0.30:0.30);
+      var sp=8+Math.random()*7;
+      var s={
+        x:fromLeft?-60:w+60,
+        y:-30+Math.random()*h*0.5,
+        vx:Math.cos(ang)*sp*(fromLeft?1:-1),
+        vy:Math.sin(ang)*sp*0.9,
+        len:90+Math.random()*140,
+        t:instant?(Math.random()*400):-40
+      };
+      shoot.push(s);
     }
     function spawnMeteor(instant){
       if(!rings.length)return;
@@ -786,7 +840,24 @@
         x.fillStyle=hg;x.beginPath();x.arc(hx,hy,4,0,6.28);x.fill();
         if(me.t>1440){met.splice(m,1);m--;}
       }
+      // estrelas cadentes cruzando a tela (de um lado para o outro)
+      for(var i=0;i<shoot.length;i++){
+        var s=shoot[i];s.t++;
+        var v=Math.hypot(s.vx,s.vy)||1;var nx=s.vx/v,ny=s.vy/v;
+        var hx=s.x+nx*(s.t*2.2), hy=s.y+ny*(s.t*2.2);
+        var sAlpha=Math.min(s.t/30,1);
+        var g2=x.createLinearGradient(hx,hy,hx-nx*s.len,hy-ny*s.len);
+        g2.addColorStop(0,'rgba(235,248,255,'+(0.9*sAlpha)+')');
+        g2.addColorStop(1,'rgba(140,180,255,0)');
+        x.strokeStyle=g2;x.lineWidth=2;x.lineCap='round';
+        x.beginPath();x.moveTo(hx,hy);x.lineTo(hx-nx*s.len,hy-ny*s.len);x.stroke();
+        var h2=x.createRadialGradient(hx,hy,0,hx,hy,3.4);
+        h2.addColorStop(0,'rgba(255,255,255,'+sAlpha+')');h2.addColorStop(1,'rgba(255,255,255,0)');
+        x.fillStyle=h2;x.beginPath();x.arc(hx,hy,3.4,0,6.28);x.fill();
+        if(hx<-80||hx>w+80||hy<-80||hy>h+80||s.t>700){shoot.splice(i,1);i--;}
+      }
       if(!reduced&&met.length<3&&Math.random()<0.02){spawnMeteor(false);}
+      if(!reduced&&shoot.length<3&&Math.random()<0.02){spawnShoot(false);}
       if(!reduced)requestAnimationFrame(draw);
     }
     rs();

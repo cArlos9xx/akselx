@@ -29,60 +29,32 @@
   body{background:var(--black);color:var(--white);font-family:var(--sans);line-height:1.65;overflow-x:hidden}
   ::selection{background:rgba(43,217,255,0.25)}
 
-  /* ============ FUNDO: REDE NEURAL SUBTIL ============ */
-  #nn{position:fixed;inset:0;z-index:0;opacity:.62;pointer-events:none}
+  /* ============ FUNDO: CÉU (ÓRBITAS + ESTRELAS CADENTES) ============ */
+  #nn{display:none}
   .grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;
     background-image:radial-gradient(rgba(255,255,255,0.6) 0.5px,transparent 0.5px);background-size:2px 2px}
   .void{position:fixed;inset:0;z-index:2;pointer-events:none;
-    background:radial-gradient(120% 90% at 50% 0%,transparent 25%,rgba(0,0,0,0.62) 100%)}
+    background:radial-gradient(120% 90% at 50% 0%,transparent 30%,rgba(0,0,0,0.7) 100%)}
 
-  /* ===== ANIMAÇÃO PREMIUM FUTURISTA ===== */
-  .aurora{position:fixed;inset:-40%;z-index:3;pointer-events:none;mix-blend-mode:screen;opacity:.95;
+  /* ===== ANIMAÇÃO PREMIUM FUTURISTA (tom original, sutil) ===== */
+  .aurora{position:fixed;inset:-30%;z-index:3;pointer-events:none;mix-blend-mode:screen;opacity:.6;
     background:
-      radial-gradient(45% 45% at 22% 30%,rgba(47,107,255,0.45),transparent 60%),
-      radial-gradient(45% 45% at 78% 62%,rgba(43,217,255,0.32),transparent 60%),
-      radial-gradient(35% 35% at 55% 85%,rgba(90,140,255,0.26),transparent 60%);
-    animation:auroraMove 14s ease-in-out infinite alternate;filter:blur(45px)}
-  .aurora::after{content:'';position:absolute;inset:0;
-    background:radial-gradient(50% 50% at 65% 20%,rgba(43,217,255,0.28),transparent 60%),
-      radial-gradient(45% 45% at 25% 75%,rgba(47,107,255,0.30),transparent 60%);
-    animation:auroraMove 18s ease-in-out infinite alternate-reverse;filter:blur(40px)}
+      radial-gradient(40% 40% at 20% 30%,rgba(47,107,255,0.28),transparent 60%),
+      radial-gradient(40% 40% at 78% 62%,rgba(43,217,255,0.16),transparent 60%),
+      radial-gradient(30% 30% at 55% 85%,rgba(90,140,255,0.14),transparent 60%);
+    animation:auroraMove 26s ease-in-out infinite alternate;filter:blur(60px)}
   @keyframes auroraMove{
-    0%{transform:translate3d(-8%,-5%,0) rotate(0deg)}
-    50%{transform:translate3d(9%,6%,0) rotate(8deg)}
-    100%{transform:translate3d(-6%,7%,0) rotate(-6deg)}}
-
-  /* feixe de luz visível que varre o fundo na diagonal */
-  .beam{position:fixed;left:-40%;top:-40%;width:180%;height:180%;z-index:3;pointer-events:none;mix-blend-mode:screen;opacity:.55;
-    background:linear-gradient(115deg,transparent 42%,rgba(43,217,255,0.10) 48%,rgba(47,107,255,0.16) 52%,transparent 58%);
-    animation:beamSweep 11s ease-in-out infinite;filter:blur(8px)}
-  @keyframes beamSweep{
-    0%{transform:translate3d(-35%,-20%,0) rotate(0deg)}
-    50%{transform:translate3d(12%,18%,0) rotate(3deg)}
-    100%{transform:translate3d(-35%,-20%,0) rotate(0deg)}}
-
-  /* grade digital que se move continuamente no fundo */
-  .gridm{position:fixed;left:-10%;top:-10%;width:120%;height:120%;z-index:3;pointer-events:none;opacity:.5;
-    background-image:linear-gradient(rgba(47,107,255,0.12) 1px,transparent 1px),linear-gradient(90deg,rgba(47,107,255,0.12) 1px,transparent 1px);
-    background-size:46px 46px;animation:gridDrift 26s linear infinite;mask-image:radial-gradient(80% 80% at 50% 50%,#000 20%,transparent 90%);-webkit-mask-image:radial-gradient(80% 80% at 50% 50%,#000 20%,transparent 90%)}
-  @keyframes gridDrift{0%{transform:translate3d(0,0,0)}100%{transform:translate3d(-46px,-46px,0)}}
-
-  /* ondas de luz que fluem (fluxo de dados) no fundo */
-  .waves{position:fixed;inset:0;z-index:3;pointer-events:none;mix-blend-mode:screen;opacity:.5;
-    background:
-      radial-gradient(60% 3% at 20% 30%,rgba(43,217,255,0.5),transparent 60%),
-      radial-gradient(50% 2.5% at 70% 55%,rgba(47,107,255,0.45),transparent 60%),
-      radial-gradient(55% 3% at 45% 80%,rgba(43,217,255,0.4),transparent 60%)}
-  .waves::before,.waves::after{content:'';position:absolute;inset:0;
-    background:linear-gradient(90deg,transparent,rgba(43,217,255,0.5),rgba(47,107,255,0.4),transparent);
-    background-size:220% 100%;animation:waveFlow 9s linear infinite}
-  .waves::after{animation:waveFlow 13s linear infinite reverse}
-  @keyframes waveFlow{0%{background-position:0% 0}100%{background-position:220% 0}}
+    0%{transform:translate3d(-4%,-2%,0) rotate(0deg)}
+    50%{transform:translate3d(4%,3%,0) rotate(6deg)}
+    100%{transform:translate3d(-3%,4%,0) rotate(-4deg)}}
 
   .sweep{position:fixed;left:0;right:0;height:260px;z-index:3;pointer-events:none;mix-blend-mode:screen;
     background:linear-gradient(180deg,transparent,rgba(43,217,255,0.10),rgba(47,107,255,0.14),transparent);
-    animation:sweepY 9s cubic-bezier(.45,0,.55,1) infinite;opacity:.7}
+    animation:sweepY 9s cubic-bezier(.45,0,.55,1) infinite;opacity:.6}
   @keyframes sweepY{0%{top:-20%}100%{top:110%}}
+
+  /* céu: órbitas + estrelas cadentes em movimento constante */
+  #celest{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:1}
 
   .holo{width:220px;height:220px;border-radius:50%;position:relative;pointer-events:none;margin:0 auto 6px;opacity:0;transform:scale(.8)}
   .holo::before{content:'';position:absolute;inset:0;border-radius:50%;border:1px solid rgba(43,217,255,0.55);box-shadow:0 0 26px rgba(47,107,255,0.45),inset 0 0 26px rgba(43,217,255,0.15);animation:holoPulse 3.4s ease-in-out infinite}
@@ -355,12 +327,10 @@
 <body oncontextmenu="return false;">
 
 <canvas id="nn"></canvas>
+<canvas id="celest"></canvas>
 <div class="grain"></div>
 <div class="void"></div>
 <div class="aurora"></div>
-<div class="gridm"></div>
-<div class="waves"></div>
-<div class="beam"></div>
 <div class="sweep"></div>
 
 <!-- NAV -->
@@ -716,49 +686,97 @@
 (function(){
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ============ FUNDO: REDE NEURAL VIVA + SINAIS VIAJANDO ============ */
+  /* ============ CÉU: ÓRBITAS + ESTRELAS CADENTES (movimento constante) ============ */
   (function(){
-    var c=document.getElementById('nn');if(!c)return;
-    var x=c.getContext('2d');var w,h,p=[],sig=[];
-    function rs(){var d=Math.min(window.devicePixelRatio||1,2);c.width=innerWidth*d;c.height=innerHeight*d;c.style.width=innerWidth+'px';c.style.height=innerHeight+'px';x.setTransform(d,0,0,d,0,0);w=innerWidth;h=innerHeight;seed();}
-    function seed(){p=[];sig=[];
-      var n=reduced?14:Math.min(70,Math.floor(w*h/20000));
-      for(var i=0;i<n;i++){p.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*0.5,vy:(Math.random()-.5)*0.5,r:Math.random()*0.9+0.4});}
-      // sinais de luz que percorrem as conexões (fluxo de dados)
-      for(var k=0;k<(reduced?2:16);k++){sig.push({t:Math.random(),sp:0.004+Math.random()*0.007});}
+    var c=document.getElementById('celest');if(!c)return;
+    var x=c.getContext('2d');var w,h;var stars=[],bodies=[],met=[];
+    function rs(){
+      var d=Math.min(window.devicePixelRatio||1,1.5);
+      c.width=innerWidth*d;c.height=innerHeight*d;
+      c.style.width=innerWidth+'px';c.style.height=innerHeight+'px';
+      x.setTransform(d,0,0,d,0,0);w=innerWidth;h=innerHeight;seed();
     }
-    function link(i,j){var d=Math.hypot(p[i].x-p[j].x,p[i].y-p[j].y);return d<180;}
+    function seed(){
+      stars=[];bodies=[];met=[];
+      var n=reduced?40:Math.min(150,Math.floor(w*h/9000));
+      for(var i=0;i<n;i++){stars.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.1+0.3,ph:Math.random()*6.28,sp:0.4+Math.random()*1.2});}
+      var R=Math.min(w,h);
+      var clusters=[[w*0.82,h*0.24,3],[w*0.16,h*0.74,2]];
+      clusters.forEach(function(cl){
+        var cx=cl[0],cy=cl[1],cnt=cl[2],rx=R*0.13;
+        for(var k=0;k<cnt;k++){
+          bodies.push({
+            cx:cx,cy:cy,rx:rx*(0.62+k*0.34),ry:rx*(0.62+k*0.34)*0.30,
+            tilt:(k%2?0.5:-0.42),ang:(k*2.1)%6.283,speed:0.00055+(k*0.0002)*(k%2?-1:1)
+          });
+        }
+      });
+      if(!reduced){for(var m=0;m<3;m++)spawnMeteor(true);}
+    }
+    function spawnMeteor(instant){
+      var fromLeft=Math.random()<0.5;
+      var ang=(Math.random()*0.34-0.17)+(fromLeft?-0.28:0.28);
+      var sp=7+Math.random()*6;
+      var m={
+        x:fromLeft?-60:w+60,
+        y:-30+Math.random()*h*0.35,
+        vx:Math.cos(ang)*sp*(fromLeft?1:-1),
+        vy:Math.sin(ang)*sp*0.85,
+        len:70+Math.random()*110,
+        t:instant?(Math.random()*300):-60
+      };
+      met.push(m);
+    }
     addEventListener('resize',rs);
-    function draw(){
+    function draw(ts){
       x.clearRect(0,0,w,h);
-      for(var i=0;i<p.length;i++){var a=p[i];a.x+=a.vx;a.y+=a.vy;
-        if(a.x<-20||a.x>w+20)a.vx*=-1;if(a.y<-20||a.y>h+20)a.vy*=-1;}
-      var edges=[];
-      for(var i=0;i<p.length;i++){for(var j=i+1;j<p.length;j++){var d=Math.hypot(p[i].x-p[j].x,p[i].y-p[j].y);
-        if(d<170){edges.push([i,j,d]);
-          x.strokeStyle='rgba(47,107,255,'+((1-d/170)*0.34+0.04)+')';x.lineWidth=1;x.beginPath();x.moveTo(p[i].x,p[i].y);x.lineTo(p[j].x,p[j].y);x.stroke();}}}
-      // sinais luminosos percorrendo as conexões
-      for(var s=0;s<sig.length;s++){
-        var sigO=sig[s];
-        if(!edges.length)break;
-        var e=edges[Math.floor(Math.random()*edges.length)];
-        var dx=p[e[1]].x-p[e[0]].x, dy=p[e[1]].y-p[e[0]].y;
-        sigO.t+=sigO.sp;if(sigO.t>1)sigO.t-=1;
-        var ph=sigO.t;
-        var px=p[e[0]].x+dx*ph, py=p[e[0]].y+dy*ph;
-        var len=Math.hypot(dx,dy);var tx=p[e[0]].x+dx*(ph+0.05), ty=p[e[0]].y+dy*(ph+0.05);
-        var grad=x.createLinearGradient(px,py,tx,ty);
-        grad.addColorStop(0,'rgba(43,217,255,0.95)');grad.addColorStop(1,'rgba(43,217,255,0)');
-        x.strokeStyle=grad;x.lineWidth=2.2;x.lineCap='round';x.beginPath();x.moveTo(px,py);x.lineTo(tx,ty);x.stroke();
-        var glow=x.createRadialGradient(px,py,0,px,py,6);
-        glow.addColorStop(0,'rgba(120,220,255,0.6)');glow.addColorStop(1,'rgba(120,220,255,0)');
-        x.fillStyle=glow;x.beginPath();x.arc(px,py,6,0,6.28);x.fill();
+      var st=performance.now()/1000;
+      // estrelas cintilantes
+      for(var i=0;i<stars.length;i++){var s=stars[i];
+        x.fillStyle='rgba(210,225,255,'+(0.20+0.28*Math.sin(st*s.sp+s.ph))+')';
+        x.beginPath();x.arc(s.x,s.y,s.r,0,6.28);x.fill();}
+      // anéis de órbita
+      for(var b=0;b<bodies.length;b++){var o=bodies[b];o.ang+=o.speed*2.6;
+        x.strokeStyle='rgba(120,160,255,0.15)';
+        x.beginPath();x.ellipse(o.cx,o.cy,o.rx,o.ry,o.tilt,0,6.28);x.stroke();
+        // posição do corpo na elipse com inclinação
+        var ex=(Math.cos(o.ang)*o.rx)*Math.cos(o.tilt)-(Math.sin(o.ang)*o.ry)*Math.sin(o.tilt)+o.cx;
+        var ey=(Math.cos(o.ang)*o.rx)*Math.sin(o.tilt)+(Math.sin(o.ang)*o.ry)*Math.cos(o.tilt)+o.cy;
+        // direção tangencial (rastro atrás do corpo)
+        var ta=o.ang-Math.PI/2;
+        var tdx=(Math.cos(ta)*o.rx)*Math.cos(o.tilt)-(Math.sin(ta)*o.ry)*Math.sin(o.tilt);
+        var tdy=(Math.cos(ta)*o.rx)*Math.sin(o.tilt)+(Math.sin(ta)*o.ry)*Math.cos(o.tilt);
+        var tl=Math.hypot(tdx,tdy)||1;tdx/=tl;tdy/=tl;
+        var glow=x.createLinearGradient(ex,ey,ex-tdx*20,ey-tdy*20);
+        glow.addColorStop(0,'rgba(43,217,255,0.85)');glow.addColorStop(1,'rgba(43,217,255,0)');
+        x.strokeStyle=glow;x.lineWidth=2.2;x.lineCap='round';
+        x.beginPath();x.moveTo(ex,ey);x.lineTo(ex-tdx*24,ey-tdy*24);x.stroke();
+        x.fillStyle='rgba(225,245,255,0.95)';
+        x.beginPath();x.arc(ex,ey,2.3,0,6.28);x.fill();
       }
-      // nós: mínimos e discretos (grade de pontos vira apenas âncoras)
-      for(var i=0;i<p.length;i++){x.fillStyle='rgba(140,180,255,0.35)';x.beginPath();x.arc(p[i].x,p[i].y,p[i].r,0,6.28);x.fill();}
-      requestAnimationFrame(draw);
+      // estrelas cadentes (meteoros realistas)
+      for(var m=0;m<met.length;m++){
+        var me=met[m];me.t++;
+        var v=Math.hypot(me.vx,me.vy)||1;var nx=me.vx/v,ny=me.vy/v;
+        var hx=me.x+nx*(me.t*2.4), hy=me.y+ny*(me.t*2.4);
+        var fade=1;
+        // rastro que se desvanece
+        var gx=x.createLinearGradient(hx,hy,hx-me.vx*2.2,hy-me.vy*2.2);
+        gx.addColorStop(0,'rgba(230,245,255,'+(0.9*fade)+')');
+        gx.addColorStop(1,'rgba(140,180,255,0)');
+        x.strokeStyle=gx;x.lineWidth=2;x.lineCap='round';
+        x.beginPath();x.moveTo(hx,hy);x.lineTo(hx-me.vx*1.9,hy-me.vy*1.9);x.stroke();
+        var hg=x.createRadialGradient(hx,hy,0,hx,hy,3.4);
+        hg.addColorStop(0,'rgba(255,255,255,'+fade+')');hg.addColorStop(1,'rgba(255,255,255,0)');
+        x.fillStyle=hg;x.beginPath();x.arc(hx,hy,3.4,0,6.28);x.fill();
+        if(hx<-80||hx>w+80||hy<-80||hy>h+80||me.t>600){met.splice(m,1);m--;}
+      }
+      if(!reduced&&met.length<3&&Math.random()<0.02){spawnMeteor(false);}
+      if(!reduced)requestAnimationFrame(draw);
     }
-    rs();if(!reduced)draw();
+    rs();
+    if(reduced){x.clearRect(0,0,w,h);draw(performance.now());}
+    else requestAnimationFrame(draw);
   })();
 
   /* ============ INTRO DESATIVADA: carrega direto no conteúdo ============ */

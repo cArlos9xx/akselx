@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Aksel X — Inteligência Artificial, Tecnologia e Inovação. O eixo do futuro.">
+<title>Aksel X — Identidade da Marca</title>
+<style>
+  :root{
+    /* Dark sofisticado — azul */
+    --bg:#050914;            /* fundo azul profundo */
+    --bg-2:#0B1120;          /* superficie */
+    --bg-3:#131B31;          /* superficie elevada */
+    --ink:#E9F0FF;           /* texto principal claro */
+    --ink-2:#A3B3D8;         /* texto secundario */
+    --blue:#3D6BFF;          /* azul primario */
+    --blue-2:#6C9AFF;        /* azul claro */
+    --blue-3:#2A4DD6;        /* azul cobalto saturado */
+    --sky:#9DCCFF;           /* azul-celeste accent */
+    --line:#1D2E55;          /* linhas suaves azul */
+    --grad:linear-gradient(120deg,#3D6BFF,#6C9AFF);
+    --serif:Georgia,'Times New Roman',serif;
+    --sans:'Segoe UI',-apple-system,Helvetica,Arial,sans-serif;
+    --mono:'Segoe UI',ui-monospace,Consolas,monospace;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink);overflow-x:hidden;line-height:1.65}
+
+  /* ======== FUNDO SÓBRIO — BRILHOS AZUIS SUAVES ======== */
+  .bg-art{
+    position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+  }
+  #dust{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+  .orb{
+    position:absolute;border-radius:50%;filter:blur(110px);
+    opacity:.28;animation:drift 38s ease-in-out infinite alternate;
+  }
+  .orb.a{width:560px;height:560px;background:#122A5C;top:-180px;right:-140px}
+  .orb.b{width:480px;height:480px;background:#0C1F45;bottom:-160px;left:-140px;animation-delay:6s}
+  .orb.c{width:340px;height:340px;background:#163A6E;top:38%;left:52%;opacity:.16;animation-delay:12s}
+  @keyframes drift{0%{transform:translate(0,0)}100%{transform:translate(-30px,20px)}}
+
+  /* linha horizontal sutil */
+  .hairline{height:1px;background:var(--line);width:100%}
+
+  /* ======== NAV ======== */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:40;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 48px;
+    background:rgba(5,9,20,0.72);backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-brand{font-size:1.1rem;font-weight:700;letter-spacing:1px;color:var(--ink)}
+  .nav-brand .x{color:var(--blue-2)}
+  nav .links a{color:var(--ink-2);text-decoration:none;margin-left:30px;font-size:0.85rem;letter-spacing:0.3px;transition:color .2s}
+  nav .links a:hover{color:var(--blue-2)}
+
+  section{position:relative;z-index:2;padding:120px 48px}
+  .inner{max-width:1080px;margin:0 auto}
+
+  .tag{font-size:0.75rem;letter-spacing:4px;text-transform:uppercase;color:var(--blue-2);font-weight:600;margin-bottom:16px}
+  .tag::before{content:'AkselX · ';color:var(--sky)}
+
+  h2{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:800;letter-spacing:-0.5px;line-height:1.1;margin-bottom:36px;color:var(--ink)}
+  h2 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+  /* ======== HERO ======== */
+  .hero{
+    position:relative;min-height:100vh;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;padding:140px 30px;overflow:hidden;
+  }
+  .hero .eyebrow{font-size:0.8rem;letter-spacing:6px;text-transform:uppercase;color:var(--blue-2);margin-bottom:28px;font-weight:600}
+  .hero-wrap{position:relative;display:flex;flex-direction:column;align-items:center;z-index:2}
+
+  .hero h1{
+    font-size:clamp(3.4rem,13vw,8.5rem);
+    font-weight:800;letter-spacing:-3px;line-height:1;color:var(--ink);
+  }
+  .hero-word{display:inline-flex;align-items:center;gap:2px;justify-content:center}
+  /* aura azul que percorre o nome (shimmer) */
+  .hero-word .sh-wrd{
+    background:var(--grad);
+    background-size:200% auto;
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    animation:shimmer 8s linear infinite;
+  }
+  @keyframes shimmer{
+    0%{background-position:0% center}
+    100%{background-position:200% center}
+  }
+  .x-draw{
+    font-family:var(--sans);font-weight:900;font-style:italic;
+    font-size:1.02em;line-height:1;display:inline-block;
+    color:var(--blue-2);
+    animation:xsurge 1s cubic-bezier(.22,1,.36,1) .3s both, xglow 5s ease-in-out .3s infinite;
+    text-shadow:0 0 18px rgba(108,154,255,0.32);
+  }
+  @keyframes xsurge{0%{opacity:0;transform:scale(.7)}100%{opacity:1;transform:scale(1)}}
+  @keyframes xglow{0%,100%{text-shadow:0 0 12px rgba(108,154,255,0.26)}50%{text-shadow:0 0 26px rgba(108,154,255,0.5)}}
+
+  .hero .slogan{
+    margin-top:34px;font-size:clamp(1.1rem,2.6vw,1.5rem);color:var(--ink-2);
+    max-width:640px;font-weight:300;letter-spacing:0.3px;position:relative;z-index:2;
+  }
+  .hero .slogan strong{color:var(--ink);font-weight:600}
+  .hero .sub{margin-top:20px;font-size:0.8rem;color:var(--blue-3);letter-spacing:4px;text-transform:uppercase}
+  .cta{margin-top:44px;display:flex;gap:16px;flex-wrap:wrap;justify-content:center;position:relative;z-index:2}
+  .cta a{text-decoration:none;font-weight:600;font-size:0.9rem;padding:15px 36px;border-radius:60px;transition:transform .2s,box-shadow .2s}
+  .cta .primary{background:var(--grad);color:#050A22;box-shadow:0 8px 30px rgba(61,107,255,0.18)}
+  .cta .primary:hover{transform:translateY(-2px);box-shadow:0 12px 44px rgba(61,107,255,0.28)}
+  .cta .ghost{border:1.5px solid var(--blue-3);color:var(--blue-2)}
+  .cta .ghost:hover{background:var(--bg-3)}
+
+  .scroll-hint{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);font-size:0.72rem;letter-spacing:3px;color:var(--blue-3);animation:pulse 3s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
+
+  /* ======== CARDS ======== */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+  .card{
+    background:var(--bg-2);border:1px solid var(--line);border-radius:18px;padding:30px;
+    transition:transform .3s,border-color .3s;
+  }
+  .card:hover{transform:translateY(-6px);border-color:var(--blue-3)}
+  .card .lab{font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--sky);margin-bottom:14px;font-weight:600}
+  .card h3{font-size:1.2rem;margin-bottom:10px;color:var(--ink)}
+  .card p{font-size:0.9rem;color:var(--ink-2);line-height:1.65}
+
+  /* ======== SIGNIFICADO ======== */
+  .meaning{max-width:840px}
+  .meaning p{color:var(--ink-2);margin-bottom:20px;font-size:1.08rem;line-height:1.8}
+  .meaning strong{color:var(--ink)}
+  .meaning .hl{color:var(--blue-2);font-weight:700}
+
+  .def-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-top:34px}
+  .def-box{background:var(--bg-2);border-radius:14px;border-top:3px solid var(--grad);padding:22px;border-left:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .def-box .k{font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--blue-2);margin-bottom:8px;font-weight:600}
+  .def-box .v{font-size:1.02rem;font-weight:600;color:var(--ink)}
+
+  /* ======== IMPORTANCIA ======== */
+  .why{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+  .why .num{font-size:0.75rem;letter-spacing:2px;color:var(--blue-2);font-weight:700;margin-bottom:12px}
+  .why h3{font-size:1.15rem;margin-bottom:10px;color:var(--ink)}
+  .why p{font-size:0.9rem;color:var(--ink-2)}
+
+  /* ======== LOGOS ======== */
+  .logos{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:22px}
+  .logocard{
+    background:var(--bg-2);border:1px solid var(--line);border-radius:20px;
+    padding:44px 26px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    min-height:230px;transition:transform .3s;
+    position:relative;overflow:hidden;
+  }
+  .logocard::after{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+  .logocard:hover::after{transform:scaleX(1)}
+  .logocard:hover{transform:translateY(-6px)}
+  .logocard .m1{font-size:1.75rem;font-weight:700;letter-spacing:-0.5px}
+  .logocard .m1 .x{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .logocard .m2{font-family:var(--serif);font-size:1.6rem;font-weight:600;letter-spacing:0.5px;font-style:italic}
+  .logocard .m2 .x{color:var(--blue-2)}
+  .logocard .m3{font-size:1.5rem;font-weight:800;letter-spacing:4px;text-transform:uppercase}
+  .logocard .m3 .x{color:var(--sky)}
+  .logocard .m4{font-size:1.7rem;font-weight:300;letter-spacing:1px}
+  .logocard .m4 .x{font-weight:700;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .logocard .m5{font-size:1.9rem;font-weight:700;font-style:italic}
+  .logocard .m5 .x{color:var(--blue-2)}
+  .logocard .m6{font-size:1.5rem;font-weight:600;letter-spacing:6px}
+  .logocard .m6 .x{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .logocard .flabel{font-size:0.68rem;color:var(--blue-3);letter-spacing:2px;text-transform:uppercase;margin-top:16px}
+
+  /* icone circulo com orbita (minimalista) */
+  .icon-orb{width:110px;height:110px;position:relative;margin-bottom:8px}
+  .icon-orb .core{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.6rem;font-weight:800;color:var(--blue-2)}
+  .icon-orb .ring{position:absolute;inset:-8px;border:1.5px solid var(--blue-3);border-radius:50%}
+  .icon-orb .ring:nth-child(2){inset:8px;border-color:var(--blue-2)}
+  .icon-orb .dot{position:absolute;top:50%;left:-4px;width:10px;height:10px;border-radius:50%;background:var(--sky);animation:orbit 8s linear infinite}
+  @keyframes orbit{from{transform:rotate(0) translateX(66px) rotate(0)}to{transform:rotate(360deg) translateX(66px) rotate(-360deg)}}
+
+  /* ======== CORES ======== */
+  .swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px}
+  .swatch{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--bg-2)}
+  .swatch .chip{height:88px}
+  .swatch .info{padding:12px 14px}
+  .swatch .info .n{font-size:0.85rem;font-weight:600}
+  .swatch .info .c{font-size:0.7rem;color:var(--ink-2);font-family:var(--mono)}
+  .gradbar{grid-column:1/-1;height:64px;border-radius:16px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-weight:700;letter-spacing:2px;color:#050A22}
+
+  /* ======== TIPOGRAFIA ======== */
+  .type-row{display:flex;flex-direction:column;gap:16px}
+  .type-item{background:var(--bg-2);border:1px solid var(--line);border-radius:14px;padding:22px 26px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  .type-item .sample{font-size:1.7rem}
+  .type-item .meta{font-size:0.72rem;color:var(--ink-2);font-family:var(--mono)}
+
+  /* ======== SLOGANS ======== */
+  .slog-list{display:flex;flex-direction:column;gap:14px}
+  .slog{background:var(--bg-2);border:1px solid var(--line);border-radius:14px;padding:22px 26px;display:flex;align-items:flex-start;gap:18px;transition:border-color .2s;cursor:default}
+  .slog:hover{border-color:var(--blue-3)}
+  .slog .n{font-size:0.8rem;color:var(--blue-2);font-weight:700;min-width:34px}
+  .slog .q{font-size:1.15rem;font-weight:600;color:var(--ink)}
+  .slog .d{font-size:0.85rem;color:var(--ink-2);margin-top:4px}
+
+  /* ======== VALORES ======== */
+  .vals{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+  .val{text-align:center;padding:38px 24px;background:var(--bg-2);border:1px solid var(--line);border-radius:18px;transition:transform .3s}
+  .val:hover{transform:translateY(-6px)}
+  .val .ic{font-size:2.4rem;margin-bottom:16px;display:inline-block}
+  .val h3{font-size:1.1rem;margin-bottom:8px;color:var(--ink)}
+  .val p{font-size:0.88rem;color:var(--ink-2)}
+
+  /* ======== APLICACOES ======== */
+  .app{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+  .biz{background:var(--bg-2);border-radius:18px;border:1px solid var(--line);padding:28px;display:flex;flex-direction:column;gap:6px;box-shadow:0 14px 40px rgba(16,28,64,0.04)}
+  .biz .bx{font-size:2.2rem;font-weight:800;font-style:italic;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+  .biz .nm{font-weight:700;margin-top:14px;font-size:1.05rem}
+  .biz .cg{font-size:0.82rem;color:var(--ink-2)}
+  .biz .ct{font-size:0.72rem;color:var(--blue-3);margin-top:12px;font-family:var(--mono)}
+
+  .raz{display:flex;flex-direction:column;gap:14px}
+  .raz .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;border-bottom:1px solid var(--line);padding-bottom:14px}
+  .raz .row .k{color:var(--ink-2);font-size:0.85rem}
+  .raz .row .v{font-weight:600;text-align:right}
+
+  .final{text-align:center;background:var(--bg-2);border:1px solid var(--line);border-radius:24px;padding:70px 30px}
+  .final h3{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:18px}
+  .final p{color:var(--ink-2);max-width:520px;margin:0 auto 32px}
+
+  footer{position:relative;z-index:2;text-align:center;padding:40px;border-top:1px solid var(--line);color:var(--ink-2);font-size:0.8rem;font-family:var(--mono)}
+
+  .audio-btn{position:fixed;bottom:24px;right:24px;z-index:60;display:flex;align-items:center;gap:10px;padding:13px 22px 13px 18px;border-radius:60px;border:1px solid var(--blue-3);background:rgba(11,17,32,0.92);backdrop-filter:blur(10px);color:var(--ink);font-size:0.9rem;font-weight:600;cursor:pointer;font-family:var(--sans);box-shadow:0 8px 30px rgba(0,0,0,0.5)}
+  .audio-btn .snd{width:30px;height:30px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:1.05rem;color:#050A22}
+  .audio-btn .bars{display:flex;align-items:flex-end;gap:3px;height:16px}
+  .audio-btn .bars i{width:3px;border-radius:2px;background:var(--blue-2);height:5px}
+  .audio-btn.playing .bars i{animation:eq .9s infinite ease-in-out}
+  .audio-btn.playing .bars i:nth-child(2){animation-delay:.15s}
+  .audio-btn.playing .bars i:nth-child(3){animation-delay:.3s}
+  .audio-btn.playing .bars i:nth-child(4){animation-delay:.45s}
+  @keyframes eq{0%,100%{height:5px}50%{height:14px}}
+
+  @media(max-width:640px){
+    section{padding:80px 22px}
+    nav{padding:16px 20px}
+    nav .links a{margin-left:12px;font-size:0.74rem}
+    .hero h1{font-size:3.2rem}
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-art"><canvas id="dust"></canvas><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Aksel<span class="x">X</span></div>
+  <div class="links">
+    <a href="#significado">Significado</a>
+    <a href="#importancia">Importância</a>
+    <a href="#logos">Logos</a>
+    <a href="#cores">Cores</a>
+    <a href="#tipografia">Fontes</a>
+    <a href="#slogans">Slogans</a>
+    <a href="#valores">Valores</a>
+  </div>
+</nav>
+
+<!-- AUDIO -->
+<audio id="narrationAudio" preload="none"><source src="narracao.mp3" type="audio/mpeg"></audio>
+<button class="audio-btn" id="audioBtn" aria-label="Ouvir apresentação">
+  <span class="snd">▶</span><span class="bars"><i></i><i></i><i></i><i></i></span>
+  <span id="audioLabel">Ouvir apresentação</span>
+</button>
+
+<!-- HERO -->
+<section class="hero draw">
+  <div class="hero-wrap">
+    <div class="eyebrow">Equilíbrio · Movimento · Futuro</div>
+    <h1 class="hero-word"><span class="sh-wrd">Aksel</span><span class="x-draw">X</span></h1>
+    <p class="slogan">O <strong>eixo veloz</strong> do futuro.<br>IA e tecnologia que dão direção, equilíbrio e movimento.</p>
+    <div class="sub">SOLUÇÕES TECNOLÓGICAS · INTELIGÊNCIA ARTIFICIAL</div>
+    <div class="cta">
+      <a class="primary" href="#significado">Conhecer a marca</a>
+      <a class="ghost" href="#logos">Ver logos</a>
+    </div>
+  </div>
+  <div class="scroll-hint">DESCUBRA</div>
+</section>
+
+<!-- SIGNIFICADO -->
+<section id="significado">
+  <div class="inner">
+    <div class="tag">Significado</div>
+    <h2>O que é <span class="grad">Aksel X</span></h2>
+    <div class="meaning">
+      <p>
+        <strong>Aksel</strong> nasce de <strong class="hl">axis</strong> — o <strong>eixo</strong>, o ponto central
+        ao redor do qual tudo gira — e de <em>celer</em>, a rapidez. É o encontro entre o <strong>equilíbrio</strong>
+        da base e a <strong>velocidade</strong> do avanço: <strong class="hl">o eixo veloz do futuro</strong>.
+      </p>
+      <p>
+        O <strong>X</strong> é a variável definitiva — o ponto exato onde a direção se define e o movimento começa.
+        <strong>Aksel X</strong> é a síntese: <strong class="hl">o centro de gravidade de toda inovação</strong>,
+        de onde parte e ao redor de onde orbita o que está por vir.
+      </p>
+      <p>
+        Se do eixo dependem a roda, o compasso e a nave, de Aksel dependem a direção, o equilíbrio e o impulso de
+        cada solução. É o apoio firme que <strong>orienta</strong> dados, a força que <strong>move</strong>
+        tecnologia e a referência que <strong>aponta</strong> para o amanhã.
+      </p>
+    </div>
+    <div class="def-row">
+      <div class="def-box"><div class="k">Etimologia</div><div class="v">De <em>axis</em> (eixo) + <em>celer</em> (veloz)</div></div>
+      <div class="def-box"><div class="k">Significado</div><div class="v">O eixo veloz do futuro</div></div>
+      <div class="def-box"><div class="k">Imagem</div><div class="v">O centro sobre o qual tudo gira</div></div>
+      <div class="def-box"><div class="k">Aplicação</div><div class="v">IA, dados, direção e inovação</div></div>
+      <div class="def-box"><div class="k">O X</div><div class="v">O ponto onde o movimento começa</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPORTANCIA -->
+<section id="importancia">
+  <div class="inner">
+    <div class="tag">Por que Aksel X</div>
+    <h2>A importância de ser <span class="grad">um Aksel X</span></h2>
+    <div class="why">
+      <div class="card"><div class="num">01</div><h3>Direção clara</h3><p>Todo avanço precisa de um ponto de referência. Aksel dá o rumo certo.</p></div>
+      <div class="card"><div class="num">02</div><h3>Equilíbrio real</h3><p>Transformamos instabilidade em base sólida, pronta para girar e crescer.</p></div>
+      <div class="card"><div class="num">03</div><h3>Movimento inteligente</h3><p>Do eixo parte o impulso — tecnologia que gira em torno do que importa.</p></div>
+      <div class="card"><div class="num">04</div><h3>Futuro orientado</h3><p>Não seguimos o compasso de outros — definimos a órbita do amanhã.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS -->
+<section id="logos">
+  <div class="inner">
+    <div class="tag">Identidade Visual</div>
+    <h2>Variações do <span class="grad">Logo</span></h2>
+    <div class="logos">
+      <div class="logocard"><div class="m1">Aksel<span class="x">X</span></div><div class="flabel">Moderna · Simples</div></div>
+      <div class="logocard"><div class="m2">Aksel<span class="x">X</span></div><div class="flabel">Serifada · Clássica</div></div>
+      <div class="logocard"><div class="m3">Aksel<span class="x">X</span></div><div class="flabel">Extendida · Uppercase</div></div>
+      <div class="logocard"><div class="m4">Aksel<span class="x">X</span></div><div class="flabel">Light · Elegante</div></div>
+      <div class="logocard">
+        <div class="icon-orb"><div class="ring"></div><div class="ring"></div><div class="core">X</div><div class="dot"></div></div>
+        <div class="flabel">Ícone Orbital</div>
+      </div>
+      <div class="logocard"><div class="m5">Aksel<span class="x">X</span></div><div class="flabel">Itálica · Dinâmica</div></div>
+      <div class="logocard"><div class="m6">AK<span class="x">X</span></div><div class="flabel">Abreviatura</div></div>
+      <div class="logocard"><div class="m1" style="font-size:1.4rem">AKSEL<BR><span class="x" style="letter-spacing:6px">X</span></div><div class="flabel">Empilhado</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CORES -->
+<section id="cores">
+  <div class="inner">
+    <div class="tag">Paleta Visual</div>
+    <h2>Cores <span class="grad">Azul</span></h2>
+    <div class="swatches">
+      <div class="swatch"><div class="chip" style="background:#E9F0FF"></div><div class="info"><div class="n">Blanco Gelo</div><div class="c">#E9F0FF</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#050914"></div><div class="info"><div class="n">Azul Profundo</div><div class="c">#050914</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#3D6BFF"></div><div class="info"><div class="n">Azul</div><div class="c">#3D6BFF</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#6C9AFF"></div><div class="info"><div class="n">Azul Claro</div><div class="c">#6C9AFF</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#9DCCFF"></div><div class="info"><div class="n">Azul-Celeste</div><div class="c">#9DCCFF</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#2A4DD6"></div><div class="info"><div class="n">Cobalto</div><div class="c">#2A4DD6</div></div></div>
+      <div class="gradbar">ASSINATURA — #3D6BFF → #6C9AFF</div>
+    </div>
+  </div>
+</section>
+
+<!-- TIPOGRAFIA -->
+<section id="tipografia">
+  <div class="inner">
+    <div class="tag">Tipografia</div>
+    <h2>Fontes da <span class="grad">Marca</span></h2>
+    <div class="type-row">
+      <div class="type-item"><div class="sample">Aksel X</div><div class="meta">SF Pro / Inter — nome da marca</div></div>
+      <div class="type-item"><div class="sample" style="font-family:var(--serif);font-style:italic">Aksel X</div><div class="meta">Playfair Display / Cormorant — premium</div></div>
+      <div class="type-item"><div class="sample" style="letter-spacing:4px;text-transform:uppercase">Aksel X</div><div class="meta">Space Grotesk / Montserrat — extended</div></div>
+      <div class="type-item"><div class="sample" style="font-weight:300">Todo movimento parte de um eixo.</div><div class="meta">Light — corpo editorial</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SLOGANS -->
+<section id="slogans">
+  <div class="inner">
+    <div class="tag">Posicionamento</div>
+    <h2>Slogans</h2>
+    <div class="slog-list">
+      <div class="slog"><div class="n">01</div><div><div class="q">O eixo do futuro.</div><div class="d">Curto, objetivo — o ponto central de toda inovação.</div></div></div>
+      <div class="slog"><div class="n">02</div><div><div class="q">Todo movimento parte de um eixo.</div><div class="d">IA e tecnologia que dão direção e equilíbrio.</div></div></div>
+      <div class="slog"><div class="n">03</div><div><div class="q">Nada gira sem Aksel.</div><div class="d">Somos a base firme que coloca tudo em movimento.</div></div></div>
+      <div class="slog"><div class="n">04</div><div><div class="q">O ponto exato onde o futuro começa.</div><div class="d">O lugar onde a direção se define.</div></div></div>
+      <div class="slog"><div class="n">05</div><div><div class="q">Girar. Avançar. Transformar.</div><div class="d">Os três movimentos de toda tecnologia que importa.</div></div></div>
+      <div class="slog"><div class="n">06</div><div><div class="q">Do centro, para o amanhã.</div><div class="d">Do eixo parte o impulso que chega ao futuro.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VALORES -->
+<section id="valores">
+  <div class="inner">
+    <div class="tag">Fundamentos</div>
+    <h2>Valores da <span class="grad">Marca</span></h2>
+    <div class="vals">
+      <div class="val"><div class="ic">◉</div><h3>Equilíbrio</h3><p>Base firme e estável, pronta para sustentar todo avanço.</p></div>
+      <div class="val"><div class="ic">➜</div><h3>Direção</h3><p>Clareza de propósito — sabemos para onde o movimento deve ir.</p></div>
+      <div class="val"><div class="ic">⟳</div><h3>Movimento</h3><p>Velocidade com estabilidade, girando em torno do que importa.</p></div>
+      <div class="val"><div class="ic">▲</div><h3>Futuro</h3><p>O olhar voltado ao amanhã, definindo a órbita da inovação.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- APLICACOES -->
+<section id="aplicacoes">
+  <div class="inner">
+    <div class="tag">Uso</div>
+    <h2>Aplicações da <span class="grad">Marca</span></h2>
+    <div class="app">
+      <div class="biz">
+        <div class="bx">X</div>
+        <div class="nm">JOÃO DA SILVA</div>
+        <div class="cg">CEO · Aksel X</div>
+        <div class="ct">+55 00 0000-0000<br>contato@akselx.com.br</div>
+      </div>
+      <div class="biz">
+        <div class="bx">X</div>
+        <div class="nm">AKSEL X</div>
+        <div class="cg">IA &amp; Tecnologia</div>
+        <div class="ct">// assinatura institucional</div>
+      </div>
+      <div class="biz" style="border-top:4px solid var(--grad)">
+        <div class="cg" style="font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;color:var(--blue-2)">Paleta sugerida</div>
+        <div class="nm" style="font-weight:400;font-size:0.9rem;line-height:1.8">Fundo Azul Profundo<br>Acentos Azul &amp; Azul Claro<br>Texto Blanco Gelo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RAZAO -->
+<section id="razao">
+  <div class="inner">
+    <div class="tag">Formal</div>
+    <h2>Razão Social &amp; Dados</h2>
+    <div class="raz">
+      <div class="row"><span class="k">Nome fantasia</span><span class="v">Aksel X</span></div>
+      <div class="row"><span class="k">Sigla / Selo</span><span class="v">AKX / AKS</span></div>
+      <div class="row"><span class="k">Razão social</span><span class="v">Aksel X Inteligência Artificial e Tecnologia Ltda</span></div>
+      <div class="row"><span class="k">Versão compacta</span><span class="v">AkselX · AKX · AX</span></div>
+      <div class="row"><span class="k">Domínio sugerido</span><span class="v">akselx.com.br / akselx.com</span></div>
+      <div class="row"><span class="k">Áreas</span><span class="v">Inteligência Artificial · Tecnologia · Inovação</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section>
+  <div class="inner">
+    <div class="final">
+      <h3>O eixo <span class="grad">do futuro</span>.</h3>
+      <p>Uma identidade que une equilíbrio, direção e movimento — o centro de gravidade de toda tecnologia que importa.</p>
+      <a href="#top" style="display:inline-block;padding:15px 38px;border-radius:60px;background:var(--grad);color:#050A22;text-decoration:none;font-weight:600;box-shadow:0 8px 30px rgba(61,107,255,0.18)">Voltar ao topo</a>
+    </div>
+  </div>
+</section>
+
+<footer>Aksel X · Identidade da marca — minimalista futurista em azul</footer>
+
+<script>
+  // Poeira azul ambiente — partículas finas subindo suavemente (não atrapalha a leitura)
+  ;(function(){
+    const c=document.getElementById('dust');
+    if(!c)return;
+    const ctx=c.getContext('2d');
+    let w,h,ps=[];
+    function resize(){w=c.width=window.innerWidth;h=c.height=window.innerHeight;seed();}
+    window.addEventListener('resize',resize);
+    function seed(){
+      ps=[];
+      const n=Math.min(30,Math.floor(w*h/28000));
+      for(let i=0;i<n;i++)ps.push({
+        x:Math.random()*w,
+        y:Math.random()*h,
+        r:Math.random()*1.5+0.4,
+        vy:-(Math.random()*0.16+0.04),
+        vx:(Math.random()-0.5)*0.07,
+        tw:Math.random()*Math.PI*2,
+        tsp:Math.random()*0.018+0.005,
+        o:Math.random()*0.18+0.06
+      });
+    }
+    let t=0;
+    function draw(){
+      ctx.clearRect(0,0,w,h);
+      for(const p of ps){
+        p.y+=p.vy;p.x+=p.vx;
+        if(p.y<-8){p.y=h+8;p.x=Math.random()*w;}
+        if(p.x<-8)p.x=w+8;if(p.x>w+8)p.x=-8;
+        const tw=0.5+0.5*Math.sin(t*p.tsp+p.tw);
+        ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle='rgba(108,154,255,'+(p.o*tw).toFixed(3)+')';
+        ctx.fill();
+      }
+      t++;requestAnimationFrame(draw);
+    }
+    resize();draw();
+  })();
+
+  // Animação do botão de áudio
+  (function(){
+    const a=document.getElementById('narrationAudio'),b=document.getElementById('audioBtn'),l=document.getElementById('audioLabel');
+    if(!a||!b)return;let pl=false;
+    function sp(s){pl=s;b.classList.toggle('playing',s);b.querySelector('.snd').textContent=s?'⏸':'▶';l.textContent=s?'Ouvindo apresentação':'Ouvir apresentação';}
+    b.addEventListener('click',function(){pl?(a.pause(),sp(false)):a.play().then(function(){sp(true)}).catch(function(){});});
+    a.addEventListener('ended',function(){sp(false)});a.addEventListener('pause',function(){sp(false)});a.addEventListener('play',function(){sp(true)});
+    let st=false;function ta(){if(st)return;st=true;if(!pl)a.play().then(function(){sp(true)}).catch(function(){});}
+    document.addEventListener('click',ta,{once:true});document.addEventListener('touchstart',ta,{once:true});
+  })();
+
+  // Revelação suave e sóbria ao rolar
+  const cards=document.querySelectorAll('.card,.logocard,.val,.slog,.biz,.def-box');
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.style.opacity=1;e.target.style.transform='translateY(0)'}})},{threshold:0.15});
+  cards.forEach(c=>{c.style.opacity=0;c.style.transform='translateY(14px)';c.style.transition='opacity .7s ease,transform .7s ease';io.observe(c)});
+</script>
+
+</body>
+</html>

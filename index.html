@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Aksel X — uma nova marca tecnológica construída para uma nova era. Intelligence × Technology × Future × Scale.">
+<meta name="description" content="Aksel X — uma nova marca tecnológica construída para uma nova era. Inteligência × Tecnologia × Futuro × Escala.">
 <title>Aksel X — Brand Reveal</title>
 <style>
   :root{
@@ -35,6 +35,34 @@
     background-image:radial-gradient(rgba(255,255,255,0.6) 0.5px,transparent 0.5px);background-size:2px 2px}
   .void{position:fixed;inset:0;z-index:2;pointer-events:none;
     background:radial-gradient(120% 90% at 50% 0%,transparent 30%,rgba(0,0,0,0.7) 100%)}
+
+  /* ===== ANIMAÇÃO PREMIUM FUTURISTA ===== */
+  .aurora{position:fixed;inset:-30%;z-index:3;pointer-events:none;mix-blend-mode:screen;opacity:.6;
+    background:
+      radial-gradient(40% 40% at 20% 30%,rgba(47,107,255,0.28),transparent 60%),
+      radial-gradient(40% 40% at 78% 62%,rgba(43,217,255,0.16),transparent 60%),
+      radial-gradient(30% 30% at 55% 85%,rgba(90,140,255,0.14),transparent 60%);
+    animation:auroraMove 26s ease-in-out infinite alternate;filter:blur(60px)}
+  @keyframes auroraMove{
+    0%{transform:translate3d(-4%,-2%,0) rotate(0deg)}
+    50%{transform:translate3d(4%,3%,0) rotate(6deg)}
+    100%{transform:translate3d(-3%,4%,0) rotate(-4deg)}}
+  .sweep{position:fixed;left:0;right:0;height:260px;z-index:3;pointer-events:none;mix-blend-mode:screen;
+    background:linear-gradient(180deg,transparent,rgba(43,217,255,0.10),rgba(47,107,255,0.14),transparent);
+    animation:sweepY 9s cubic-bezier(.45,0,.55,1) infinite;opacity:.7}
+  @keyframes sweepY{0%{top:-20%}100%{top:110%}}
+
+  .holo{width:220px;height:220px;border-radius:50%;position:relative;pointer-events:none;margin:0 auto 6px;opacity:0;transform:scale(.8)}
+  .holo::before{content:'';position:absolute;inset:0;border-radius:50%;border:1px solid rgba(43,217,255,0.55);box-shadow:0 0 26px rgba(47,107,255,0.45),inset 0 0 26px rgba(43,217,255,0.15);animation:holoPulse 3.4s ease-in-out infinite}
+  .holo::after{content:'';position:absolute;inset:18%;border-radius:50%;border:1px dashed rgba(140,175,255,0.45);animation:holoSpin 14s linear infinite}
+  @keyframes holoPulse{0%,100%{box-shadow:0 0 22px rgba(47,107,255,0.4),inset 0 0 22px rgba(43,217,255,0.12)}50%{box-shadow:0 0 40px rgba(47,107,255,0.65),inset 0 0 34px rgba(43,217,255,0.28)}}
+  @keyframes holoSpin{to{transform:rotate(360deg)}}
+  .holo .ring3{position:absolute;inset:34%;border-radius:50%;border:2px solid rgba(255,255,255,0.16);animation:holoSpin 8s linear infinite reverse}
+  .holo .core{position:absolute;top:50%;left:50%;width:8px;height:8px;transform:translate(-50%,-50%);border-radius:50%;background:#fff;box-shadow:0 0 18px 4px rgba(43,217,255,0.8)}
+
+  .typebar{font-family:var(--mono);font-size:0.8rem;color:var(--blue-2);letter-spacing:2px;margin-top:26px;display:inline-block;min-height:1.2em}
+  .typebar .cr{display:inline-block;width:2px;height:1em;background:var(--cyan);vertical-align:-2px;margin-left:2px;animation:blink 1s steps(2) infinite}
+  @keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}}
 
   .wrap{position:relative;z-index:5}
 
@@ -233,6 +261,8 @@
 <canvas id="nn"></canvas>
 <div class="grain"></div>
 <div class="void"></div>
+<div class="aurora"></div>
+<div class="sweep"></div>
 
 <!-- CINEMATIC INTRO -->
 <div id="intro">
@@ -264,9 +294,11 @@
 <!-- 01 REVEAL DO NOME -->
 <section id="reveal">
   <div class="container" style="text-align:center">
-    <div class="rv"><div class="kick" style="justify-content:center">Brand Reveal · 2026</div></div>
-    <h1 class="feat rv" style="font-weight:300;color:var(--gray);margin-bottom:10px">Who are we becoming?</h1>
-    <div id="revealName" style="margin-top:40px;min-height:120px"></div>
+    <div class="rv"><div class="kick" style="justify-content:center">Revelação da Marca · 2026</div></div>
+    <h1 class="feat rv" style="font-weight:300;color:var(--gray);margin-bottom:10px">Em quem estamos nos tornando?</h1>
+    <div id="revealName" style="margin-top:26px;min-height:120px"></div>
+    <div class="holo" id="revealHolo"><div class="ring3"></div><div class="core"></div></div>
+    <div class="typebar rv" id="revealType"></div>
     <div class="rv" style="margin-top:50px"><a class="btn ghost" href="#nome">Explorar o significado</a></div>
   </div>
 </section>
@@ -274,7 +306,7 @@
 <!-- 02 O NOME -->
 <section id="nome">
   <div class="container">
-    <div class="kick rv">02 — The Name</div>
+    <div class="kick rv">02 — O Nome</div>
     <h2 class="sec rv">O nome é a <span style="color:var(--blue-2)">promessa</span>.</h2>
     <div class="row" style="display:flex;flex-wrap:wrap;gap:40px;align-items:center">
       <div style="flex:1.2;min-width:280px">
@@ -289,10 +321,10 @@
       <div style="flex:1;min-width:280px">
         <div class="anatom rv" id="anatom">
           <div class="let"><div class="char">A</div><div class="word">Avanço</div></div>
-          <div class="let"><div class="char">K</div><div class="word">Knowledge<br>Conhecimento</div></div>
-          <div class="let"><div class="char">S</div><div class="word">Scale<br>Escala</div></div>
-          <div class="let"><div class="char">E</div><div class="word">Engine<br>Motor</div></div>
-          <div class="let"><div class="char">L</div><div class="word">Logic<br>Lógica</div></div>
+          <div class="let"><div class="char">K</div><div class="word">Conhecimento</div></div>
+          <div class="let"><div class="char">S</div><div class="word">Escala</div></div>
+          <div class="let"><div class="char">E</div><div class="word">Motor</div></div>
+          <div class="let"><div class="char">L</div><div class="word">Lógica</div></div>
           <div class="let"><div class="char">X</div><div class="word">eXpansão<br>Variável</div></div>
         </div>
       </div>
@@ -303,14 +335,14 @@
 <!-- 03 HISTÓRIA DO NOME -->
 <section>
   <div class="container">
-    <div class="kick rv">03 — Why This Name</div>
+    <div class="kick rv">03 — Por que este nome</div>
     <h2 class="sec rv">Por que <span style="color:var(--white)">Aksel X</span>?</h2>
     <div class="grid3" style="margin-top:30px">
       <div class="pillar rv"><div class="num">ETIMOLOGIA</div><h3>Axis + Celer</h3><p>De <em>axis</em> — o eixo, o ponto central sobre o qual tudo gira — somado a <em>celer</em>, a velocidade. O nome carrega equilíbrio e movimento ao mesmo tempo.</p></div>
       <div class="pillar rv"><div class="num">FONÉTICA</div><h3>Duas sílabas</h3><p>Aksel é curto, seco e de pronúncia natural em português, inglês e espanhol. O "X" final dá presença e um ponto visual de memorização imediato.</p></div>
       <div class="pillar rv"><div class="num">CONCEITO</div><h3>O eixo do futuro</h3><p>Aksel é o centro de gravidade de uma tecnologia em movimento: o eixo firme por onde passa toda inovação — IA, dados, software e automação.</p></div>
-      <div class="pillar rv"><div class="num">ASSOCIAÇÃO</div><h3>Inteligência</h3><p>A sonoridade converge para "knowledge" (conhecimento) e "logics" (lógica), ainda que por associação. Um <strong>brand meaning</strong> — um significado construído pela marca, não uma etimologia histórica.</p></div>
-      <div class="pillar rv"><div class="num">FUTURO &amp; ESCALA</div><h3>Não limita</h3><p>O nome não prende a empresa a um único produto. Ele comporta AI, cloud, data, sistemas e o que ainda não existe — como toda marca de escala.</p></div>
+      <div class="pillar rv"><div class="num">ASSOCIAÇÃO</div><h3>Inteligência</h3><p>A sonoridade converge para "conhecimento" e "lógica", ainda que por associação. Um <strong>significado de marca</strong> — um significado construído pela marca, não uma etimologia histórica.</p></div>
+      <div class="pillar rv"><div class="num">FUTURO &amp; ESCALA</div><h3>Não limita</h3><p>O nome não prende a empresa a um único produto. Ele comporta IA, nuvem, dados, sistemas e o que ainda não existe — como toda marca de escala.</p></div>
       <div class="pillar rv"><div class="num">SENSAÇÃO</div><h3>Preciso e global</h3><p>Transmite precisão, confiança e potência. Soa como o nome de um laboratório de inteligência — caro, limpo e pronto para o mundo.</p></div>
     </div>
   </div>
@@ -319,14 +351,14 @@
 <!-- 04 FORÇA -->
 <section id="forca">
   <div class="container">
-    <div class="kick rv">04 — Why It's Strong</div>
+    <div class="kick rv">04 — Por que é forte</div>
     <h2 class="sec rv">Por que é <span style="color:var(--blue-2)">forte</span>?</h2>
     <div class="grid3" style="margin-top:30px">
       <div class="pillar rv"><div class="num">01</div><h3>Memorable</h3><p>Curto, duas sílabas, pontuado pelo X. Fica na memória após a primeira leitura.</p></div>
       <div class="pillar rv"><div class="num">02</div><h3>Distinctive</h3><p>Identidade sonora própria, sem colidir com marcas conhecidas do setor.</p></div>
       <div class="pillar rv"><div class="num">03</div><h3>Technological</h3><p>Fonética compatível com IA, software e infraestrutura. Parece tecnologia.</p></div>
       <div class="pillar rv"><div class="num">04</div><h3>Global</h3><p>Pronunciável em várias línguas, com grafia estável e presença internacional.</p></div>
-      <div class="pillar rv"><div class="num">05</div><h3>Scalable</h3><p>Comporta toda a linha: X AI, X Cloud, X Data, X Intelligence. Nunca fica apertado.</p></div>
+      <div class="pillar rv"><div class="num">05</div><h3>Escalável</h3><p>Comporta toda a linha: IA, Nuvem, Dados, Inteligência. Nunca fica apertado.</p></div>
       <div class="pillar rv"><div class="num">06</div><h3>Brandable</h3><p>Permite um símbolo forte, uma identidade visual limpa e uma linguagem de movimento reconhecível.</p></div>
     </div>
   </div>
@@ -335,7 +367,7 @@
 <!-- 05 POSICIONAMENTO -->
 <section>
   <div class="container" style="text-align:center">
-    <div class="kick rv" style="justify-content:center">05 — Positioning</div>
+    <div class="kick rv" style="justify-content:center">05 — Posicionamento</div>
     <h2 class="sec rv"><span style="color:var(--white)">Aksel X</span> não é apenas uma empresa de tecnologia.</h2>
     <div class="lead rv" style="margin:0 auto"><strong style="color:var(--cyan)">É uma empresa de inteligência.</strong></div>
     <div class="stack rv" style="margin-top:60px" id="stack">
@@ -385,17 +417,17 @@
 <!-- 07 IDENTIDADE / LOGOS -->
 <section id="identidade">
   <div class="container">
-    <div class="kick rv">07 — Logo System</div>
+    <div class="kick rv">07 — Sistema de Identidade</div>
     <h2 class="sec rv">Um sistema de <span style="color:var(--blue-2)">identidade</span></h2>
     <div class="logos" style="margin-top:30px">
-      <div class="logocard rv"><div class="l1">Aksel<span class="x">X</span></div><div class="cap">Wordmark</div></div>
+      <div class="logocard rv"><div class="l1">Aksel<span class="x">X</span></div><div class="cap">Logotipo</div></div>
       <div class="logocard rv"><div class="mono">X</div><div class="cap">Monograma</div></div>
-      <div class="logocard rv"><div class="l2">Aksel<span class="x">X</span></div><div class="cap">Serif · Premium</div></div>
+      <div class="logocard rv"><div class="l2">Aksel<span class="x">X</span></div><div class="cap">Serifada · Premium</div></div>
       <div class="logocard rv"><div class="mono2">X</div><div class="cap">Ícone</div></div>
-      <div class="logocard rv"><div class="l3">AKSEL<span class="x">X</span></div><div class="cap">Extended</div></div>
-      <div class="logocard rv"><div class="l4">Aksel<span class="x">X</span></div><div class="cap">Light</div></div>
+      <div class="logocard rv"><div class="l3">AKSEL<span class="x">X</span></div><div class="cap">Estendida</div></div>
+      <div class="logocard rv"><div class="l4">Aksel<span class="x">X</span></div><div class="cap">Fina</div></div>
       <div class="logocard rv"><div class="l5">AK<span class="x">X</span></div><div class="cap">Vertical</div></div>
-      <div class="logocard rv"><div class="l5">AX</div><div class="cap">Favicon</div></div>
+      <div class="logocard rv"><div class="l5">AX</div><div class="cap">Ícone de aplicativo</div></div>
     </div>
     <div class="rule"></div>
     <div class="kick rv">Símbolo da marca</div>
@@ -417,12 +449,12 @@
 <!-- 08 EXTENSÕES & ESCALA -->
 <section>
   <div class="container">
-    <div class="kick rv">08 — Scalability</div>
+    <div class="kick rv">08 — Escalabilidade</div>
     <h2 class="sec rv">A marca <span style="color:var(--blue-2)">se expande</span>.</h2>
     <div class="extend" id="extend" style="margin-top:30px">
-      <div class="row"><span class="tag">AKSEL × AI</span><span>Inteligência artificial</span></div>
-      <div class="row"><span class="tag">AKSEL × CLOUD</span><span>Infraestrutura</span></div>
-      <div class="row"><span class="tag">AKSEL × DATA</span><span>Análise e dados</span></div>
+      <div class="row"><span class="tag">AKSEL × IA</span><span>Inteligência artificial</span></div>
+      <div class="row"><span class="tag">AKSEL × NUVEM</span><span>Infraestrutura</span></div>
+      <div class="row"><span class="tag">AKSEL × DADOS</span><span>Análise e dados</span></div>
       <div class="row"><span class="tag">AKSEL × LAB</span><span>Pesquisa e inovação</span></div>
       <div class="row"><span class="tag">AKSEL × OS</span><span>Plataforma</span></div>
       <div class="row"><span class="tag">AKSEL × X</span><span>Núcleo da marca</span></div>
@@ -433,7 +465,7 @@
 <!-- 09 DNA -->
 <section id="dna">
   <div class="container" style="text-align:center">
-    <div class="kick rv" style="justify-content:center">09 — Brand DNA</div>
+    <div class="kick rv" style="justify-content:center">09 — DNA da Marca</div>
     <h2 class="sec rv">O DNA da <span style="color:var(--blue-2)">marca</span></h2>
     <div class="dna" style="margin-top:34px">
       <div class="item rv">Inteligente</div>
@@ -449,7 +481,7 @@
 <!-- 10 PERSONALIDADE -->
 <section>
   <div class="container">
-    <div class="kick rv">10 — Personality</div>
+    <div class="kick rv">10 — Personalidade</div>
     <h2 class="sec rv">Personalidade da <span style="color:var(--blue-2)">marca</span></h2>
     <div class="two" style="margin-top:30px">
       <div class="col no rv"><h3>Não somos</h3><ul>
@@ -460,7 +492,7 @@
       </ul></div>
     </div>
     <div class="rule"></div>
-    <div class="kick rv">Brand Voice</div>
+    <div class="kick rv">Voz da Marca</div>
     <div class="voice" style="margin-top:10px">
       <div class="v rv"><div class="who">Confiança</div>Nós não prometemos. Nós construímos sistemas que entregam.</div>
       <div class="v rv"><div class="who">Visão</div>A vantagem do futuro não está nos dados. Está na inteligência de usá-los.</div>
@@ -472,17 +504,17 @@
 <!-- 11 ECOSSISTEMA -->
 <section id="ecossistema">
   <div class="container">
-    <div class="kick rv">11 — Technology Ecosystem</div>
+    <div class="kick rv">11 — Ecossistema de Tecnologia</div>
     <h2 class="sec rv">Um <span style="color:var(--blue-2)">ecossistema</span> de tecnologia</h2>
     <div class="eco rv" style="margin-top:30px;height:620px">
-      <div class="core"><div class="c1">Aksel<span class="x">X</span></div><div class="c2">Intelligence Ecosystem</div></div>
+      <div class="core"><div class="c1">Aksel<span class="x">X</span></div><div class="c2">Ecossistema de Inteligência</div></div>
       <svg id="ecoSvg" viewBox="0 0 100 100" fill="none" preserveAspectRatio="none" style="opacity:.5">
       </svg>
       <div class="orb" data-a="-90" data-r="38">IA</div>
       <div class="orb" data-a="-45" data-r="38">Dados</div>
       <div class="orb" data-a="0" data-r="38">Software</div>
       <div class="orb" data-a="45" data-r="38">Automação</div>
-      <div class="orb" data-a="90" data-r="38">Cloud</div>
+      <div class="orb" data-a="90" data-r="38">Nuvem</div>
       <div class="orb" data-a="135" data-r="38">Sistemas</div>
       <div class="orb" data-a="180" data-r="38">Robôs</div>
       <div class="orb" data-a="225" data-r="38">Analytics</div>
@@ -493,7 +525,7 @@
 <!-- 12 GLOBAL -->
 <section id="global">
   <div class="container">
-    <div class="kick rv">12 — Global Potential</div>
+    <div class="kick rv">12 — Potencial Global</div>
     <h2 class="sec rv">Do Brasil para o <span style="color:var(--blue-2)">mundo</span></h2>
     <div class="gsteps rv" id="gsteps">
       <span>Brasil</span><span>LatAm</span><span>EUA</span><span>Europa</span><span>Ásia</span><span>Global</span>
@@ -515,7 +547,7 @@
       <h2 class="rv">O mundo está mudando.<br>Os dados estão em toda parte.<br><strong>Inteligência é a diferença.</strong></h2>
       <h2 class="rv" style="margin-top:-8px;color:var(--gray);font-weight:300">Nós construímos os sistemas que transformam possibilidade em realidade.</h2>
       <div class="rv" style="margin-top:36px"><h2 style="color:var(--white)">Isto é <span class="x" style="background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">Aksel X</span>.</h2></div>
-      <div class="lang rv">PT · The world is changing. Data is everywhere. Intelligence is the difference. We build the systems that turn possibility into reality. This is Aksel X.</div>
+      <div class="lang rv">O mundo está mudando. Os dados estão em toda parte. Inteligência é a diferença. Construímos os sistemas que transformam possibilidade em realidade. Isto é Aksel X.</div>
     </div>
   </div>
 </section>
@@ -531,7 +563,7 @@
   <div class="rv" style="margin-top:50px"><a class="btn" href="#reveal">Replay</a></div>
 </section>
 
-<footer>Aksel X · Brand Reveal · Intelligence × Technology × Future × Scale</footer>
+<footer>Aksel X · Revelação da Marca · Inteligência × Tecnologia × Futuro × Escala</footer>
 
 </div>
 
@@ -605,15 +637,46 @@
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}})},{threshold:0.18});
   document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
 
-  /* reveal de letras do nome principal */
+  /* reveal de letras do nome principal + anel holográfico + digitação */
   (function(){
-    var t=document.getElementById('revealName');if(!t)return;
-    var name='AKSEL',letters=[];
-    name.split('').forEach(function(ch){var s=document.createElement('span');s.className='lr';s.textContent=ch;s.style.fontSize='clamp(2.8rem,9vw,7rem)';s.style.fontWeight='800';s.style.letterSpacing='-3px';t.appendChild(s);letters.push(s);});
-    var x=document.createElement('span');x.className='lr';x.textContent='X';x.style.fontSize='clamp(2.8rem,9vw,7rem)';x.style.fontWeight='800';x.style.fontStyle='italic';
-    x.style.background='var(--grad)';x.style.webkitBackgroundClip='text';x.style.backgroundClip='text';x.style.webkitTextFillColor='transparent';t.appendChild(x);letters.push(x);
-    t.classList.add('lrin');
-    letters.forEach(function(s,i){s.style.animationDelay=(i*0.12+0.3)+'s';});
+    var sec=document.getElementById('reveal');if(!sec)return;
+    var t=document.getElementById('revealName');
+    var holo=document.getElementById('revealHolo');
+    var tb=document.getElementById('revealType');
+    var done=false;
+    var msgs=[
+      'O eixo veloz do futuro — inteligência, precisão e escala.',
+      'Inteligência × Tecnologia × Futuro × Escala.',
+      'Construído para a próxima era.'
+    ];
+    function build(){
+      var name='AKSEL';
+      name.split('').forEach(function(ch){var s=document.createElement('span');s.className='lr';s.textContent=ch;s.style.fontSize='clamp(2.8rem,9vw,7rem)';s.style.fontWeight='800';s.style.letterSpacing='-3px';t.appendChild(s);});
+      var x=document.createElement('span');x.className='lr';x.textContent='X';x.style.fontSize='clamp(2.8rem,9vw,7rem)';x.style.fontWeight='800';x.style.fontStyle='italic';
+      x.style.background='var(--grad)';x.style.webkitBackgroundClip='text';x.style.backgroundClip='text';x.style.webkitTextFillColor='transparent';t.appendChild(x);
+      t.classList.add('lrin');
+      t.querySelectorAll('.lr').forEach(function(s,i){s.style.animationDelay=(i*0.12+0.25)+'s';});
+      // anel holográfico
+      setTimeout(function(){
+        holo.style.transition='opacity 1s ease,transform 1.4s cubic-bezier(.16,1,.3,1)';
+        holo.style.opacity='1';holo.style.transform='scale(1)';
+      },400);
+      // digitação das mensagens
+      setTimeout(function(){ typeLoop(0); }, 2400);
+    }
+    function typeMsg(txt,fn){
+      var i=0;tb.textContent='';
+      (function step(){
+        tb.textContent+=txt[i];
+        i++;
+        if(i<txt.length){setTimeout(step,22);}else{var cr=document.createElement('span');cr.className='cr';tb.appendChild(cr);setTimeout(fn,2600);}
+      })();
+    }
+    function typeLoop(n){
+      typeMsg(msgs[n],function(){ typeLoop((n+1)%msgs.length); });
+    }
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!done){done=true;build();io.unobserve(e.target);}})},{threshold:.35});
+    io.observe(sec);
   })();
 
   /* count up */

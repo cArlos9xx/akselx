@@ -1080,6 +1080,8 @@
   /* ===== CÂMERA CINEMATOGRÁFICA — PARALLAX DE ROLAGEM ===== */
   (function(){
     if(reduced)return;
+    var mobile=(window.innerWidth||document.documentElement.clientWidth)<=820;
+    if(mobile)return;
     var layers=[];
     function bind(){
       layers=[];

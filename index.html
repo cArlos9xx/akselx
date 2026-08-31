@@ -167,6 +167,24 @@
   .logocard .mono{width:56px;height:56px;font-size:1.5rem;font-weight:800;display:flex;align-items:center;justify-content:center;border:1.5px solid var(--blue-2);border-radius:12px;color:var(--blue-2)}
   .logocard .mono2{width:56px;height:56px;font-size:1.5rem;font-weight:800;display:flex;align-items:center;justify-content:center;background:var(--grad);color:var(--black);border-radius:12px}
   .logocard .cap{font-size:0.62rem;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-top:4px}
+  .logocard .ng{font-size:1.3rem;font-weight:800;letter-spacing:0.5px}
+  .logocard .ng{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .logocard .nc{padding:6px 14px;font-size:1rem;font-weight:800;letter-spacing:1px;border:1.5px solid var(--blue-2);border-radius:6px}
+  .logocard .nc .x{color:var(--cyan)}
+  .logocard .ncircle{width:56px;height:56px;border-radius:50%;border:1.5px solid var(--blue-2);display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(47,107,255,0.35)}
+  .logocard .ncircle .x{font-size:1.2rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-style:italic}
+  .logocard .nchar{font-size:1.5rem;font-weight:800;letter-spacing:6px}
+  .logocard .nchar .x{color:var(--blue-2)}
+  .concepts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+  @media(max-width:920px){.concepts{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.concepts{grid-template-columns:1fr}}
+  .concept{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 16px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;transition:border-color .3s,transform .4s}
+  .concept:hover{border-color:var(--blue-2);transform:translateY(-4px)}
+  .cglyph{width:100%;max-width:110px;aspect-ratio:1;display:flex;align-items:center;justify-content:center}
+  .cglyph svg{width:100%;height:100%}
+  .cname{font-family:var(--mono);font-size:0.7rem;color:var(--cyan);letter-spacing:3px}
+  .cdesc{font-size:0.8rem;color:var(--gray);line-height:1.55}
+  .cg1 svg circle{stroke-dasharray:4 6;animation:holoSpin 26s linear infinite}
 
   /* símbolo */
   .symbol{display:flex;align-items:center;justify-content:center;gap:60px;flex-wrap:wrap}
@@ -408,6 +426,62 @@
       <div class="logocard rv"><div class="l4">Aksel<span class="x">X</span></div><div class="cap">Fina</div></div>
       <div class="logocard rv"><div class="l5">AK<span class="x">X</span></div><div class="cap">Vertical</div></div>
       <div class="logocard rv"><div class="l5">AX</div><div class="cap">Ícone de aplicativo</div></div>
+      <div class="logocard rv"><div class="ng">AkselX</div><div class="cap">Compacta</div></div>
+      <div class="logocard rv"><div class="nc">A<span class="x">X</span></div><div class="cap">Marca em caixa</div></div>
+      <div class="logocard rv"><div class="ncircle"><span class="x">X</span></div><div class="cap">Emblema</div></div>
+      <div class="logocard rv"><div class="nchar">AKS<span class="x">X</span></div><div class="cap">Sigla</div></div>
+    </div>
+    <div class="rule"></div>
+    <div class="kick rv">Conceitos alternativos</div>
+    <p class="rv muted" style="font-size:0.9rem;max-width:560px;margin-top:8px">Quatro direções possíveis para a marca, do mais icônico ao mais técnico — cada uma construída sobre o mesmo núcleo: o eixo.</p>
+    <div class="concepts">
+      <div class="concept rv">
+        <div class="cglyph cg1">
+          <svg viewBox="0 0 220 220" fill="none">
+            <line x1="110" y1="34" x2="110" y2="186" stroke="var(--blue-2)" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="110" cy="110" r="46" stroke="url(#gc1)" stroke-width="2.5"/>
+            <circle cx="110" cy="110" r="4" fill="#fff"/>
+          </svg>
+        </div>
+        <div class="cname">EIXO</div>
+        <p class="cdesc">O nome dentro de um eixo orbital — núcleo luminoso protegido por um anel de energia. Ícone absoluto, funciona sozinho.</p>
+      </div>
+      <div class="concept rv">
+        <div class="cglyph cg2">
+          <svg viewBox="0 0 220 220" fill="none">
+            <defs><linearGradient id="gc2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2F6BFF"/><stop offset="1" stop-color="#2BD9FF"/></linearGradient></defs>
+            <line x1="36" y1="110" x2="184" y2="110" stroke="url(#gc2)" stroke-width="3" stroke-linecap="round"/>
+            <line x1="110" y1="36" x2="110" y2="184" stroke="url(#gc2)" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="110" cy="110" r="9" fill="#fff"/>
+          </svg>
+        </div>
+        <div class="cname">NÓ</div>
+        <p class="cdesc">O ponto de interseção — o centro onde todos os caminhos se encontram. Dois eixos formando o coração da rede.</p>
+      </div>
+      <div class="concept rv">
+        <div class="cglyph cg3">
+          <svg viewBox="0 0 220 220" fill="none">
+            <defs><linearGradient id="gc3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2F6BFF"/><stop offset="1" stop-color="#2BD9FF"/></linearGradient></defs>
+            <rect x="48" y="48" width="124" height="124" rx="30" fill="url(#gc3)"/>
+            <text x="110" y="130" text-anchor="middle" font-family="inherit" font-size="64" font-weight="800" font-style="italic" fill="#05070a">X</text>
+          </svg>
+        </div>
+        <div class="cname">PAVÃO</div>
+        <p class="cdesc">Um bloco sólido em gradiente com o X em contraste. Presença tech e corporativa, alto reconhecimento em qualquer tamanho.</p>
+      </div>
+      <div class="concept rv">
+        <div class="cglyph cg4">
+          <svg viewBox="0 0 220 220" fill="none">
+            <defs><linearGradient id="gc4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2F6BFF"/><stop offset="1" stop-color="#2BD9FF"/></linearGradient></defs>
+            <line x1="38" y1="140" x2="150" y2="58" stroke="url(#gc4)" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="158" cy="52" r="14" fill="none" stroke="#2BD9FF" stroke-width="4"/>
+            <circle cx="158" cy="52" r="4" fill="#fff"/>
+            <path d="M40 120 L40 188 Q40 196 48 196 L116 196" stroke="#2F6BFF" stroke-width="3" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="cname">VETOR</div>
+        <p class="cdesc">Uma seta diagonal que atravessa a tela terminando em um nó — movimento, avanço e o ponto exato da decisão.</p>
+      </div>
     </div>
     <div class="rule"></div>
     <div class="kick rv">Símbolo da marca</div>

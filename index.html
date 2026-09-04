@@ -1080,7 +1080,7 @@
   addEventListener('mousemove',function(e){mx=(e.clientX/innerWidth-0.5);my=(e.clientY/innerHeight-0.5);});
   (function raf(){document.querySelectorAll('.final h2, #revealName').forEach(function(el){el.style.transform='none';});requestAnimationFrame(raf);})();
   (function(){
-    var els=document.querySelectorAll('.symbol .glyph, .eco');
+    var els=document.querySelectorAll('.eco');
     function loop(){els.forEach(function(el){if(reduced)return;el.style.translate=mx*6+'px '+my*6+'px';});requestAnimationFrame(loop);}loop();
   })();
 
@@ -1092,7 +1092,7 @@
     var layers=[];
     function bind(){
       layers=[];
-      document.querySelectorAll('.symbol,.mapwrap').forEach(function(el){layers.push({el:el,sp:-0.04});});
+      document.querySelectorAll('.mapwrap').forEach(function(el){layers.push({el:el,sp:-0.04});});
       document.querySelectorAll('.holo, .gsteps').forEach(function(el){layers.push({el:el,sp:0.05});});
     }
     bind();
